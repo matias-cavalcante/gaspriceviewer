@@ -3,18 +3,20 @@ const box = document.getElementById("results");
 // Define the API endpoint URL
 const apiUrl = 'https://gas-prices-iceland.onrender.com/orkan';
 
-// Set the interval to fetch data from the API every 5 minutes
-setInterval(function() {
-  // Get the current date and time
-  const now = new Date();
-  // Get the current hour
-  const hour = now.getHours();
-  // Fetch data from the API
-  fetch(apiUrl)
-    .then(response => response.json())
-    .then(data => {
-      console.log(data['borgarnes'])
-      // Append the data and current hour to the HTML element
-      box.append(data['borgarnes'], " ", hour)
-    })
-}, 50000); //
+
+let count = 0;
+setInterval(function(){
+    const now = new Date();
+    const hour = now.getHours();
+    const min = now.getMinutes();
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+          box.append(data['baula'].region, " ", hour, ":", min)
+      })
+      if (count == 8){
+        box.innerHTML = "";
+      }
+      count++;
+    }, 1800000)
+
