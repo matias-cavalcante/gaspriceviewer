@@ -15,6 +15,7 @@ setInterval(function(){
           box.append(data['baula'].region, " ", hour, ":", min)
       })
       if (count == 4){
+        box.innerHTML = "";
         count = 0
       }
       count++;
