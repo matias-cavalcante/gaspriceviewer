@@ -19,5 +19,5 @@ setInterval(function(){
         count = 0
       }
       count++;
-    }, 1800000)
+    }, 500000)
 
