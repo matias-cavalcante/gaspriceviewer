@@ -14,8 +14,9 @@ setInterval(function(){
       .then(data => {
           box.append(data['baula'].region, " ", hour, ":", min)
       })
-      if (count == 8){
+      if (count == 4){
         box.innerHTML = "";
+        count = 0
       }
       count++;
     }, 1800000)
