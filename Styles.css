@@ -1,0 +1,7 @@
+.station-box {
+    border: red solid 1.5px;
+    padding: 10px;
+    border-radius: 10px;
+    width: auto;
+    max-width: 350px;
+}
