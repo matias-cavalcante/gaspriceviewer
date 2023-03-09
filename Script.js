@@ -43,7 +43,7 @@ function displayPrices(tableContainer, table) {
 
       filteredStations.forEach(station => {
         let stationUpperFirst = station[0].toUpperCase();
-        let stationUpdated = stationUpperFirst + station.slice(1, -1)
+        let stationUpdated = stationUpperFirst + station.slice(1)
 
         const stationInfo = prices[station];
         const pricesRow = document.createElement("tr");
