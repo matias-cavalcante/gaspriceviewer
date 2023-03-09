@@ -84,3 +84,5 @@ displayPrices();
 // Add an event listener to update the prices on the page when the window is focused
 window.addEventListener('focus', displayPrices);
 
+setInterval(displayPrices, 5000);
+
