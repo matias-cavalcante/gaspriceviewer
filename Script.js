@@ -1,30 +1,23 @@
-/*const box = document.getElementById("results");
+const pricesElement = document.getElementById("results");
+const tableElement = document.createElement("table");
+tableElement.classList.add('table-style')
+const headerRow = document.createElement("tr");
 
-// Define the API endpoint URL
-const apiUrl = 'https://gas-prices-iceland.onrender.com/orkan';
+function fillRow(content, row){
+    const cell = document.createElement("th");
+    cell.textContent = content;
+    row.appendChild(cell);
+}
 
+fillRow('Station', headerRow )
+fillRow('Region', headerRow )
+fillRow('Petrol', headerRow )
+fillRow('Diesel', headerRow )
 
-let count = 0;
-setInterval(function(){
-    const now = new Date();
-    const hour = now.getHours();
-    const min = now.getMinutes();
-    fetch(apiUrl)
-      .then(response => response.json())
-      .then(data => {
-          box.append(data['baula'].region, " ", hour, ":", min)
-      })
-      if (count == 4){
-        box.innerHTML = "";
-        count = 0
-      }
-      count++;
-    }, 5000)
-*/
+tableElement.appendChild(headerRow);
 
 const apiUrl = 'https://gas-prices-iceland.onrender.com/orkan';
 
-// Define a function to fetch the latest prices from the API and update the prices in local storage
 function updatePrices() {
   fetch(apiUrl)
     .then(response => response.json())
@@ -35,54 +28,38 @@ function updatePrices() {
       console.error('Error fetching prices:', error);
     });
 }
-
-// Call the updatePrices function initially to populate local storage with the latest prices
 updatePrices();
 
 // Update the prices in local storage every 5 minutes
 setInterval(updatePrices, 10 * 60 * 1000);
 
 // Define a function to display the prices from local storage
-function displayPrices() {
-    const pricesElement = document.getElementById('results');
-    pricesElement.innerHTML = '';
-  
-    const prices = JSON.parse(localStorage.getItem('prices') || '{}');
 
-  
-    const now = new Date();
-    const hour = now.getHours();
-    const min = now.getMinutes();
+function displayPrices(tableContainer, table) {
+    const prices = JSON.parse(localStorage.getItem('prices') || '{}'); 
     
-    let count = 0;
-  
-    Object.keys(prices).forEach(station => {
+    const filteredStations = Object.keys(prices)
+    .filter(station => prices[station].region === 'Vesturland');
 
-        if (count == 10){
-            return "";
-        } 
-      const stationPrices = prices[station];
-      const stationElement = document.createElement('div');
-      let stationUpperFirst = station[0].toUpperCase();
-      let stationUpdated = stationUpperFirst + station.slice(1, -1)
-      stationElement.innerText = `${stationUpdated}: ${stationPrices.region} ${stationPrices.bensin} ${stationPrices.disel} ${" - "}${hour}:${min}`;
-      const littleBox = document.createElement('div');
-      littleBox.classList.add('station-box')
-      littleBox.appendChild(stationElement)
-      pricesElement.appendChild(littleBox);
+      filteredStations.forEach(station => {
+        let stationUpperFirst = station[0].toUpperCase();
+        let stationUpdated = stationUpperFirst + station.slice(1, -1)
 
-   
-    count++;
-      
+        const stationInfo = prices[station];
+        const pricesRow = document.createElement("tr");
+
+        fillRow(stationUpdated, pricesRow)
+        fillRow(stationInfo.region, pricesRow)
+        fillRow(stationInfo.bensin, pricesRow)
+        fillRow(stationInfo.disel, pricesRow)
+
+        table.appendChild(pricesRow)
     });
+    tableContainer.appendChild(table)
 }
   
-
-// Call the displayPrices function initially to display the prices from local storage
-displayPrices();
-
-// Add an event listener to update the prices on the page when the window is focused
+displayPrices(pricesElement,tableElement);
 window.addEventListener('focus', displayPrices);
 
-setInterval(displayPrices, 5000);
+setInterval(displayPrices(pricesElement, tableElement), 300000);
 
