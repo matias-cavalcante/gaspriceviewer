@@ -1,16 +1,21 @@
-.station-box {
-    border: red solid 1.5px;
-    padding: 10px;
-    border-radius: 10px;
-    width: auto;
-    max-width: 350px;
-}
-
 .table-style {
-    max-width: 60%;
+    width: 75%;
     padding: 20px;
     border-bottom: black;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.table-row-style {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.t-cell-style {
+    width: 100%;
+    text-align: start;
+    border: solid 1px red;
 }
 
 #results {
