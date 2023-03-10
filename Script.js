@@ -23,7 +23,7 @@ fillRow('Diesel', headerRow )
 
 tableElement.appendChild(headerRow);
 
-
+/*
 function updateLastUpdateTime() {
     const updateTimeElement = updateTimeBox;
     const lastUpdateTime = localStorage.getItem('lastUpdateTime');
@@ -37,7 +37,20 @@ function updateLastUpdateTime() {
     } else {
       updateTimeElement.textContent = 'N/A';
     }
-}
+}*/
+
+function updateLastUpdateTime() {
+    const updateTimeElement = updateTimeBox;
+    const lastUpdateTime = localStorage.getItem('lastUpdateTime');
+    if (lastUpdateTime) {
+      const timeDiffMs = Date.now() - new Date(parseInt(lastUpdateTime));
+      const timeDiffMin = Math.floor(timeDiffMs / (1000 * 60));
+      updateTimeElement.textContent = `Last update was ${timeDiffMin} minutes ago`;
+    } else {
+      updateTimeElement.textContent = 'N/A';
+    }
+  }
+  
   
     
 
