@@ -7,16 +7,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gas Prices</title>
     <link href="Styles.css" rel="stylesheet" type="text/css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 </head>
 
 <header>
-    <h1>Gas prices test</h1>
+    <nav>
+        <h1>ICELAND GAS PRICES VIEWER</h1>
+    </nav>
 </header>
 
 <body>
-    <div id="results"> </div>
+    <section id="main-container">
+        <div id="regions">
+            <button>Höfuðborgarsvæðið</button>
+            <button>Suðvesturhornið</button>
+            <button>Suðurland</button>
+            <button>Austurland</button>
+            <button>Norðurland</button>
+            <button>Vestfirðir</button>
+            <button>Vesturland</button>
+        </div>
+
+        <div id="table-container"> </div>
+    </section>
     <div id="time-since-updated"></div>
-    <script src="Script.js"></script>
+    <script type="module" src="Script.js"></script>
 </body>
 
 </html>
