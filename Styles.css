@@ -24,14 +24,13 @@ header h1 {
 }
 
 #regions {
-    width: 30%;
+    width: 350px;
     display: flex;
     flex-direction: column;
     align-self: center;
 }
 
 #regions button {
-    width: 250px;
     height: 35px;
     text-align: start;
     padding-left: 5%;
@@ -43,9 +42,9 @@ header h1 {
 }
 
 #regions button:hover {
-    width: 275px;
-    transition: 0.5s;
-    background-color: blue;
+    height: 48px;
+    transition: 0.6s;
+    background-color: #060047;
     cursor: pointer;
 }
 
@@ -94,6 +93,18 @@ header h1 {
 }
 
 #time-since-updated {
-    color: blue;
+    color: #060047;
     padding-left: 10%;
+}
+
+@media screen and (max-width: 630px) {
+    #main-container {
+        flex-wrap: wrap;
+    }
+
+    #table-container {
+        margin-top: 3%;
+    }
+
+
 }
