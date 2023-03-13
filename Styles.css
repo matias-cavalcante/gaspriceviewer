@@ -15,6 +15,7 @@ nav {
 header h1 {
     text-align: center;
     margin: 0px;
+    font-size: 1.8em;
     color: white;
 }
 
@@ -24,7 +25,7 @@ header h1 {
 }
 
 #regions {
-    width: 350px;
+    width: 250px;
     display: flex;
     flex-direction: column;
     align-self: center;
@@ -98,12 +99,31 @@ header h1 {
 }
 
 @media screen and (max-width: 630px) {
+    nav {
+        height: 15%;
+    }
+
     #main-container {
         flex-wrap: wrap;
     }
 
     #table-container {
-        margin-top: 3%;
+        margin-top: 5%;
+    }
+
+    .table-style {
+        padding: 0;
+    }
+
+    #regions {
+        width: 100%;
+    }
+
+    #regions button {
+        text-align: center;
+        margin-top: 0;
+        height: 40px;
+        border-bottom: solid 1.3px white;
     }
 
 
