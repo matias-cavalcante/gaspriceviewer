@@ -29,7 +29,7 @@ function updateLastUpdateTime(updatebox) {
   if (lastUpdateTime) {
     const timeDiffMs = Date.now() - new Date(parseInt(lastUpdateTime));
     const timeDiffMin = Math.floor(timeDiffMs / (1000 * 60));
-    updatebox.textContent = `Last update was ${timeDiffMin} minutes ago`;
+    updatebox.textContent = `Uppfært var fyrir ${timeDiffMin} mínútum síðan`;
   } else {
     updatebox.textContent = 'N/A';
   }
@@ -176,4 +176,5 @@ southwest.addEventListener("click", function(){
 
 
 //Keeps track of when last update took place
+updateLastUpdateTime(updateTimeBox)
 setInterval(() => updateLastUpdateTime(updateTimeBox), 30000);
