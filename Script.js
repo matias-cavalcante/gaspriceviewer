@@ -10,9 +10,6 @@ const olisUrl = 'https://gas-prices-iceland.onrender.com/olis';
 const atloliaUrl = 'https://gas-prices-iceland.onrender.com/atlanso';
 const obUrl = 'https://gas-prices-iceland.onrender.com/ob';
 
-// Fetch and display data from multiple URLs
-const gasUrls = [orkanUrl, n1Url, olisUrl, atloliaUrl, obUrl]
-
  
 function updatePrices(url, name) {
   fetch(url)
@@ -72,11 +69,11 @@ function newRows(filtered, imglink, gasprice) {
 }
 
 
-function displayPrices(tableElement, imgurl, key, newrows) {
+function displayPrices(tableElement, imgurl, key, newrows, area) {
   //Get values from LOCAL STORAGE + only cares about 'VESTURLAND' values. Change latter
   const prices = JSON.parse(localStorage.getItem('prices-' + key) || '{}');
   const filteredStations = Object.keys(prices)
-    .filter(station => prices[station].region === 'Vesturland');
+    .filter(station => prices[station].region === area);
 
   // Get rows in the table + make more rows from API all & sort them
   const rows = Array.from(tableElement.querySelectorAll('tr'));
@@ -89,32 +86,91 @@ function displayPrices(tableElement, imgurl, key, newrows) {
   divTableContainer.appendChild(tableElement);
 }
 
+function clearTable(tableElement) {
+  const rows = Array.from(tableElement.querySelectorAll('tr'));
+  rows.forEach(row => row.remove());
+}
 
-//Call and add OB station values
-updatePrices(obUrl, 'ob');
-setInterval(() => updatePrices(obUrl, 'ob'), 600000);
 
-setInterval(displayPrices(table, "logos/ob.png", 'ob', newRows), 60050)
+function stationsPerRegion(showRegion){
+  //Call and add OB station values
+  updatePrices(obUrl, 'ob');
+  setInterval(() => updatePrices(obUrl, 'ob'), 600000);
+
+  setInterval(displayPrices(table, "logos/ob.png", 'ob', newRows, showRegion), 60050)
+
 
 //Call and add OLIS station values
-updatePrices(olisUrl, 'olis');
-setInterval(() => updatePrices(olisUrl, 'olis'), 600150);
-
-setInterval(displayPrices(table, "logos/olis.png", 'olis', newRows), 600180)
+  updatePrices(olisUrl, 'olis');
+  setInterval(() => updatePrices(olisUrl, 'olis'), 600150);
+  setInterval(displayPrices(table, "logos/olis.png", 'olis', newRows, showRegion), 600180)
 
 
 //Call and add ORKAN station values
-updatePrices(orkanUrl, 'orkan');
-setInterval(() => updatePrices(orkan, 'orkan'), 600200);
+  updatePrices(orkanUrl, 'orkan');
+  setInterval(() => updatePrices(orkan, 'orkan'), 600200);
 
-setInterval(displayPrices(table, "logos/orkan.png", 'orkan', newRows), 600250)
+  setInterval(displayPrices(table, "logos/orkan.png", 'orkan', newRows, showRegion), 600250)
 
 
-//Call and add N1 station values
-updatePrices(n1Url, 'n1')
-setInterval(() => updatePrices(n1Url, 'n1'), 600300);
+  //Call and add N1 station values
+  updatePrices(n1Url, 'n1')
+  setInterval(() => updatePrices(n1Url, 'n1'), 600300);
+  setInterval(displayPrices(table, "logos/n1.png", 'n1', newRows, showRegion), 600400);
 
-setInterval(() => displayPrices(table, "logos/n1.png", 'n1', newRows), 600400);
+  //Call and add N1 station values
+  updatePrices(atloliaUrl, 'atl')
+  setInterval(() => updatePrices(atloliaUrl, 'atl'), 600500);
+  setInterval(displayPrices(table, "logos/atlantsolia.png", 'atl', newRows, showRegion), 600600);
+}
+
+stationsPerRegion("Höfuðborgarsvæðið")
+
+const capital = document.getElementById("capital")
+capital.addEventListener("click", function(){
+  clearTable(table)
+  stationsPerRegion("Höfuðborgarsvæðið")
+})
+
+const south = document.getElementById("south")
+south.addEventListener("click", function(){
+  clearTable(table)
+  stationsPerRegion("Suðurland")
+})
+
+const north = document.getElementById("north")
+north.addEventListener("click", function(){
+  clearTable(table)
+  stationsPerRegion("Norðurland")
+})
+
+const westfjords = document.getElementById("westfjords")
+westfjords.addEventListener("click", function(){
+  clearTable(table)
+  stationsPerRegion("Vestfirðir")
+})
+
+const west = document.getElementById("west")
+west.addEventListener("click", function(){
+  clearTable(table)
+  stationsPerRegion("Vesturland")
+})
+
+const east = document.getElementById("east")
+east.addEventListener("click", function(){
+  clearTable(table)
+  stationsPerRegion("Austurland")
+})
+
+const southwest = document.getElementById("southwest")
+southwest.addEventListener("click", function(){
+  clearTable(table)
+  stationsPerRegion("Suðvesturhornið")
+})
+
+
+
+
 
 
 
