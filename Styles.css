@@ -1,32 +1,44 @@
 body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin: 0;
+    background-color: #E1E5EA;
 }
 
 nav {
-    background-color: #060047;
-    height: 60px;
-    margin-bottom: 4%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
+    padding: 10px;
+    margin-bottom: 2%;
+    background-color: #228584;
+    color: white;
 }
 
-header h1 {
+
+nav h1 {
     text-align: center;
     margin: 0px;
-    font-size: 1.8em;
-    font-weight: 600;
-    color: white;
+    font-size: 2.5em;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+nav h2 {
+    text-align: center;
+    font-size: 1.3em;
+    font-weight: 300;
+    letter-spacing: 1px;
 }
 
 #main-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
 #regions {
     width: 250px;
+    max-height: 400px;
     display: flex;
     flex-direction: column;
     align-self: center;
@@ -34,43 +46,79 @@ header h1 {
 
 #regions button {
     height: 35px;
-    text-align: start;
-    padding-left: 5%;
-    margin-top: 5px;
-    border: 0;
+    text-align: center;
+    margin-top: 5%;
     font-size: 1.2em;
-    background-color: rgb(58, 58, 173);
+    border: 0;
+    border-radius: 7px;
+    font-weight: 500;
+    background-color: #228584;
     color: white;
 }
 
 #regions button:hover {
-    height: 48px;
-    transition: 0.6s;
-    background-color: #060047;
+    transition: 0.8s;
+    background-color: rgb(8, 72, 56);
     cursor: pointer;
 }
 
+#table-header {
+    display: flex;
+    align-items: center;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    padding-left: 5.5%;
+    height: 10%;
+    background-color: #228584;
+    color: white;
+}
+
+#table-header h3 {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: normal;
+}
+
+#table-header h3:nth-child(1) {
+    width: 20%;
+}
+
+#table-header h3:nth-child(2) {
+    width: 65%;
+}
+
+#table-header h3:nth-child(3) {
+    width: 15%;
+    margin-right: 2%;
+}
+
+
 #table-container {
-    width: 650px;
-    max-height: 400px;
+    width: 600px;
+    max-height: 350px;
+    padding: 0;
     text-align: center;
     overflow-y: scroll;
     overflow-x: hidden;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
 #table-container::-webkit-scrollbar {
-    visibility: hidden;
+    visibility: visible;
     width: 6px;
+    background-color: #9fcac9;
+    border-bottom-right-radius: 8px;
 }
 
 #table-container::-webkit-scrollbar-thumb {
-    background-color: grey;
+    background-color: #228584;
     border-radius: 5px;
 }
 
 .table-style {
     width: 100%;
-    padding: 30px;
+    padding: 0;
     border-spacing: 0;
 }
 
@@ -82,7 +130,7 @@ header h1 {
 .table-cell-style {
     width: 60%;
     font-size: 1.3em;
-    font-weight: 600;
+    font-weight: normal;
     text-align: start;
     padding-left: 6%;
 }
@@ -102,17 +150,45 @@ header h1 {
     color: #060047;
 }
 
-@media screen and (max-width: 630px) {
-    nav {
-        height: 15%;
+@media screen and (max-width: 650px) {
+
+    nav h1 {
+        font-size: 1.6em;
+    }
+
+    nav h2 {
+        font-size: 1.1em;
     }
 
     #main-container {
         flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #table-block {
+        width: 90%;
+        margin: 0;
+    }
+
+    #table-header {
+        margin: 0;
+        margin-top: 4%;
+        position: relative;
+        width: 94%;
+    }
+
+    #table-header h3:nth-child(2) {
+        width: 60%;
+        margin-left: 10px;
+    }
+
+    #table-header h3:nth-child(3) {
+        width: 20%;
+        margin-right: 5px;
     }
 
     #table-container {
-        margin-top: 5%;
+        max-width: 100%;
     }
 
     .table-style {
@@ -120,14 +196,13 @@ header h1 {
     }
 
     #regions {
-        width: 100%;
+        width: 90%;
     }
 
     #regions button {
         text-align: center;
-        margin-top: 0;
+        margin-top: 2%;
         height: 40px;
-        border-bottom: solid 1.3px white;
     }
 
 

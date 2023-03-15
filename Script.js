@@ -2,37 +2,26 @@ const divTableContainer = document.getElementById("table-container");
 const table = document.createElement("table");
 table.classList.add('table-style')
 
-const updateTimeBox = document.getElementById("time-since-updated")
+let urlTemplate = 'https://gas-prices-iceland.onrender.com/'
+const n1Url = urlTemplate + "n1";
+const olisUrl = urlTemplate + "olis";
+const atloliaUrl = urlTemplate + "atlanso";
+const obUrl = urlTemplate + "ob";
+const orkanUrl = urlTemplate + "orkan";
 
-const orkanUrl = 'https://gas-prices-iceland.onrender.com/orkan';
-const n1Url = 'https://gas-prices-iceland.onrender.com/n1';
-const olisUrl = 'https://gas-prices-iceland.onrender.com/olis';
-const atloliaUrl = 'https://gas-prices-iceland.onrender.com/atlanso';
-const obUrl = 'https://gas-prices-iceland.onrender.com/ob';
+const stationsBuild = [
+  { code: 'ob', url: obUrl, img: 'logos/ob.png', time: 600000 },
+  { code: 'olis',url: olisUrl, img: 'logos/olis.png', time: 600150 },
+  { code: 'orkan', url: orkanUrl, img: 'logos/orkan.png', time: 600200 },
+  { code: 'n1', url: n1Url, img: 'logos/n1.png', time: 600300 },
+  { code: 'atl',url: atloliaUrl, img: 'logos/atlantsolia.png', time: 600500 }  ];
 
- 
-function updatePrices(url, name) {
-  fetch(url)
+function updatePrices(url) {
+  return fetch(url)
     .then(response => response.json())
-    .then(data => {
-      localStorage.setItem('prices-' + name, JSON.stringify(data));
-      localStorage.setItem('lastUpdateTime', Date.now().toString());
-    })
     .catch(error => {
       console.error('Error fetching prices:', error);
     });
-}
-
-
-function updateLastUpdateTime(updatebox) {
-  const lastUpdateTime = localStorage.getItem('lastUpdateTime');
-  if (lastUpdateTime) {
-    const timeDiffMs = Date.now() - new Date(parseInt(lastUpdateTime));
-    const timeDiffMin = Math.floor(timeDiffMs / (1000 * 60));
-    updatebox.textContent = `Uppfært var fyrir ${timeDiffMin} mínútum síðan`;
-  } else {
-    updatebox.textContent = 'N/A';
-  }
 }
 
 //The three functions below are to handle the table element and it´s content
@@ -68,113 +57,80 @@ function newRows(filtered, imglink, gasprice) {
   }).sort((a, b) => parseFloat(a.lastElementChild.textContent) - parseFloat(b.lastElementChild.textContent));
 }
 
-
-function displayPrices(tableElement, imgurl, key, newrows, area) {
-  //Get values from LOCAL STORAGE + only cares about 'VESTURLAND' values. Change latter
-  const prices = JSON.parse(localStorage.getItem('prices-' + key) || '{}');
-  const filteredStations = Object.keys(prices)
-    .filter(station => prices[station].region === area);
-
-  // Get rows in the table + make more rows from API all & sort them
-  const rows = Array.from(tableElement.querySelectorAll('tr'));
-  const moreRows = newrows(filteredStations, imgurl, prices);
-
-  rows.sort((a, b) => parseFloat(a.lastElementChild.textContent) - parseFloat(b.lastElementChild.textContent));
-  let mergedRows = [...rows, ...moreRows].sort((a, b) => parseFloat(a.lastElementChild.textContent) - parseFloat(b.lastElementChild.textContent));
-
-  mergedRows.forEach(row => tableElement.appendChild(row));
-  divTableContainer.appendChild(tableElement);
-}
-
 function clearTable(tableElement) {
   const rows = Array.from(tableElement.querySelectorAll('tr'));
   rows.forEach(row => row.remove());
 }
 
+function displayPrices(tableElement, imgurl, link, newrows, area) {
+  updatePrices(link)
+    .then(data => {
+      const filteredStations = Object.keys(data)
+        .filter(station => data[station].region === area);
+      // Get rows in the table + make more rows from API all & sort them
+      const rows = Array.from(tableElement.querySelectorAll('tr'));
+      const moreRows = newrows(filteredStations, imgurl, data);
+      rows.sort((a, b) => parseFloat(a.lastElementChild.textContent) - parseFloat(b.lastElementChild.textContent));
+      let mergedRows = [...rows, ...moreRows].sort((a, b) => parseFloat(a.lastElementChild.textContent) - parseFloat(b.lastElementChild.textContent));
 
-function stationsPerRegion(showRegion){
-  //Call and add OB station values
-  updatePrices(obUrl, 'ob');
-  setInterval(() => updatePrices(obUrl, 'ob'), 600000);
-
-  setInterval(displayPrices(table, "logos/ob.png", 'ob', newRows, showRegion), 60050)
-
-
-//Call and add OLIS station values
-  updatePrices(olisUrl, 'olis');
-  setInterval(() => updatePrices(olisUrl, 'olis'), 600150);
-  setInterval(displayPrices(table, "logos/olis.png", 'olis', newRows, showRegion), 600180)
-
-
-//Call and add ORKAN station values
-  updatePrices(orkanUrl, 'orkan');
-  setInterval(() => updatePrices(orkan, 'orkan'), 600200);
-
-  setInterval(displayPrices(table, "logos/orkan.png", 'orkan', newRows, showRegion), 600250)
-
-
-  //Call and add N1 station values
-  updatePrices(n1Url, 'n1')
-  setInterval(() => updatePrices(n1Url, 'n1'), 600300);
-  setInterval(displayPrices(table, "logos/n1.png", 'n1', newRows, showRegion), 600400);
-
-  //Call and add N1 station values
-  updatePrices(atloliaUrl, 'atl')
-  setInterval(() => updatePrices(atloliaUrl, 'atl'), 600500);
-  setInterval(displayPrices(table, "logos/atlantsolia.png", 'atl', newRows, showRegion), 600600);
+      mergedRows.forEach(row => tableElement.appendChild(row));
+      divTableContainer.appendChild(tableElement);
+    })
 }
 
-stationsPerRegion("Höfuðborgarsvæðið")
 
+function stationsPerRegion(region, stations){
+  for (let st = 0; st < stations.length; st++){
+    updatePrices(stations[st]['url']);
+    setInterval(() => updatePrices(stations[st]['url']), stations[st]['time']);
+    setInterval(displayPrices(table, stations[st]['img'], stations[st]['url'], newRows, region),
+    stations[st]['time'])
+  }
+}
+
+//Buttons to display stations & prices in each region of the country
 const capital = document.getElementById("capital")
 capital.addEventListener("click", function(){
   clearTable(table)
-  stationsPerRegion("Höfuðborgarsvæðið")
+  stationsPerRegion("Höfuðborgarsvæðið", stationsBuild)
 })
 
 const south = document.getElementById("south")
 south.addEventListener("click", function(){
   clearTable(table)
-  stationsPerRegion("Suðurland")
+  stationsPerRegion("Suðurland", stationsBuild)
 })
 
 const north = document.getElementById("north")
 north.addEventListener("click", function(){
   clearTable(table)
-  stationsPerRegion("Norðurland")
+  stationsPerRegion("Norðurland", stationsBuild)
 })
 
 const westfjords = document.getElementById("westfjords")
 westfjords.addEventListener("click", function(){
   clearTable(table)
-  stationsPerRegion("Vestfirðir")
+  stationsPerRegion("Vestfirðir", stationsBuild)
 })
 
 const west = document.getElementById("west")
 west.addEventListener("click", function(){
   clearTable(table)
-  stationsPerRegion("Vesturland")
+  stationsPerRegion("Vesturland", stationsBuild)
 })
 
 const east = document.getElementById("east")
 east.addEventListener("click", function(){
   clearTable(table)
-  stationsPerRegion("Austurland")
+  stationsPerRegion("Austurland", stationsBuild)
 })
 
 const southwest = document.getElementById("southwest")
 southwest.addEventListener("click", function(){
   clearTable(table)
-  stationsPerRegion("Suðvesturhornið")
+  stationsPerRegion("Suðvesturhornið", stationsBuild)
 })
 
+//Initial call for content display in page
+stationsPerRegion("Höfuðborgarsvæðið", stationsBuild);
 
-
-
-
-
-
-
-//Keeps track of when last update took place
-updateLastUpdateTime(updateTimeBox)
-setInterval(() => updateLastUpdateTime(updateTimeBox), 30000);
