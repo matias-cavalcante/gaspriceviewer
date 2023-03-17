@@ -15,22 +15,30 @@
 
 <header>
     <nav>
-        <h1>ELDSNEYTISVERÐ Á ÍSLANDI</h1>
-        <h2>Find the updated prices both for bensin & disel of the Icelandic gas stations in all regions</h2>
+        <h1>Icegas</h1>
+        <h2>Eldsneytisverð á Íslandi</h2>
     </nav>
 </header>
 
 <body>
+
+    <div id="fuel-type">
+        <button id="ben">bensin</button>
+        <button id="dis">disel</button>
+    </div>
     <section id="main-container">
-        <div id="regions">
-            <button id="capital">Höfuðborgarsvæðið</button>
-            <button id="southwest">Suðvesturhornið</button>
-            <button id="south">Suðurland</button>
-            <button id="east">Austurland</button>
-            <button id="north">Norðurland</button>
-            <button id="westfjords">Vestfirðir</button>
-            <button id="west">Vesturland</button>
-        </div>
+        <section id="dropdown-box">
+            <button id="choose">Velja svæði</button>
+            <div id="regions">
+                <button id="capital">Höfuðborgarsvæðið</button>
+                <button id="southwest">Suðvesturhornið</button>
+                <button id="south">Suðurland</button>
+                <button id="east">Austurland</button>
+                <button id="north">Norðurland</button>
+                <button id="westfjords">Vestfirðir</button>
+                <button id="west">Vesturland</button>
+            </div>
+        </section>
 
         <div id="table-block">
             <div id="table-header">
@@ -41,7 +49,7 @@
             <div id="table-container"> </div>
         </div>
     </section>
-    <div id="time-since-updated"></div>
+
     <script src="Script.js"></script>
 </body>
 
