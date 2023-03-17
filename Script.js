@@ -214,7 +214,7 @@ southwest.addEventListener("click", function(){
 })
 
 //Initial call for content display in page
-stationsPerRegion("Höfuðborgarsvæðið", stationsBuild, fuel);
+stationsPerRegion("Höfuðborgarsvæðið", stationsBuild, 'bensin');
 regionToShow = "Höfuðborgarsvæðið"
 
 
