@@ -6,20 +6,31 @@ const divTableContainer = document.getElementById("table-container");
 const table = document.createElement("table");
 table.classList.add('table-style')
 
+let regionToShow = ""
+
+function displayFuelType(region, fuelname){
+  clearTable(table)
+  if (window.innerWidth < 650){
+    buttns.style.display = "none";
+  }
+  stationsPerRegion(region, stationsBuild, fuelname)
+  regionToShow = region
+}
+
+
 const bensinButton = document.getElementById("ben")
 const diselButton = document.getElementById("dis")
 
 bensinButton.addEventListener("click", function(){
-  fuel = 'bensin'
   bensinButton.style.backgroundColor = "#011826"
   diselButton.style.backgroundColor = "#02436c"
-
+  displayFuelType(regionToShow, 'bensin')
 })
 
 diselButton.addEventListener("click", function(){
-  fuel = 'disel'
   diselButton.style.backgroundColor = "#011826"
   bensinButton.style.backgroundColor = "#02436c"
+  displayFuelType(regionToShow, 'disel')
 })
 
 
@@ -138,6 +149,7 @@ capital.addEventListener("click", function(){
     buttns.style.display = "none";
   }
   stationsPerRegion("Höfuðborgarsvæðið", stationsBuild, fuel)
+  regionToShow = "Höfuðborgarsvæðið"
 })
 
 const south = document.getElementById("south")
@@ -147,6 +159,7 @@ south.addEventListener("click", function(){
     buttns.style.display = "none";
   }
   stationsPerRegion("Suðurland", stationsBuild, fuel)
+  regionToShow = "Suðurland"
 })
 
 const north = document.getElementById("north")
@@ -156,6 +169,7 @@ north.addEventListener("click", function(){
     buttns.style.display = "none";
   }
   stationsPerRegion("Norðurland", stationsBuild, fuel)
+  regionToShow = "Norðurland"
 })
 
 const westfjords = document.getElementById("westfjords")
@@ -165,6 +179,8 @@ westfjords.addEventListener("click", function(){
     buttns.style.display = "none";
   }
   stationsPerRegion("Vestfirðir", stationsBuild, fuel)
+  regionToShow = "Vestfirðir"
+  
 })
 
 const west = document.getElementById("west")
@@ -174,6 +190,7 @@ west.addEventListener("click", function(){
     buttns.style.display = "none";
   }
   stationsPerRegion("Vesturland", stationsBuild, fuel)
+  regionToShow = "Vesturland"
 })
 
 const east = document.getElementById("east")
@@ -183,6 +200,7 @@ east.addEventListener("click", function(){
     buttns.style.display = "none";
   }
   stationsPerRegion("Austurland", stationsBuild, fuel)
+  regionToShow = "Austurland"
 })
 
 const southwest = document.getElementById("southwest")
@@ -192,10 +210,13 @@ southwest.addEventListener("click", function(){
     buttns.style.display = "none";
   }
   stationsPerRegion("Suðvesturhornið", stationsBuild, fuel)
+  regionToShow = "Suðvesturhornið"
 })
 
 //Initial call for content display in page
 stationsPerRegion("Höfuðborgarsvæðið", stationsBuild, fuel);
+regionToShow = "Höfuðborgarsvæðið"
+
 
 window.addEventListener('resize', function() {
   if (window.innerWidth > 650) {
