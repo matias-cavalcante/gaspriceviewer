@@ -317,3 +317,11 @@ div h3:nth-child(3) {
         margin-top: 15%;
     }
 }
+
+@media screen and (max-width: 330px) {
+    .table-cell-style {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}

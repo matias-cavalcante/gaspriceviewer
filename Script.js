@@ -85,7 +85,20 @@ function fillRow(imageurl, name, price, row){
 
   const namecell = document.createElement("th");
   namecell.classList.add("table-cell-style")
-  namecell.appendChild(document.createTextNode(name))
+
+  if (name.length >= 15 && (name.includes(',') || name.includes(' '))) {
+    const regex = /,| /;
+    const parts = name.split(regex, 2);
+    const firstPart = parts[0] + " ";
+    const secondPart = parts[1];
+    namecell.appendChild(document.createTextNode(firstPart))
+    namecell.appendChild(document.createTextNode(secondPart))
+  }else{
+    namecell.appendChild(document.createTextNode(name))
+  }
+  
+
+ 
 
   const pricecell = document.createElement("th");
   pricecell.style.fontSize = "1.3em"
