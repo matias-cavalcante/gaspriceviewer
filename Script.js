@@ -22,14 +22,14 @@ const bensinButton = document.getElementById("ben")
 const diselButton = document.getElementById("dis")
 
 bensinButton.addEventListener("click", function(){
-  bensinButton.style.backgroundColor = "#011826"
-  diselButton.style.backgroundColor = "#02436c"
+  bensinButton.style.backgroundColor = "black"
+  diselButton.style.backgroundColor = "#1a771a"
   displayFuelType(regionToShow, 'bensin')
 })
 
 diselButton.addEventListener("click", function(){
-  diselButton.style.backgroundColor = "#011826"
-  bensinButton.style.backgroundColor = "#02436c"
+  diselButton.style.backgroundColor = "black"
+  bensinButton.style.backgroundColor = "#1164b7"
   displayFuelType(regionToShow, 'disel')
 })
 
@@ -89,7 +89,7 @@ function fillRow(imageurl, name, price, row){
 
   const pricecell = document.createElement("th");
   pricecell.style.fontSize = "1.3em"
-  pricecell.style.color = "#0c5380"  
+  pricecell.style.color = "#0c5380"
   pricecell.appendChild(document.createTextNode(price))
 
   row.appendChild(logocell);
