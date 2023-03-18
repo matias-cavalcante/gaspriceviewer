@@ -219,6 +219,7 @@ regionToShow = "Höfuðborgarsvæðið"
 
 
 window.addEventListener('resize', function() {
+  /*Carefull here when resizing back up*/ 
   if (window.innerWidth > 650) {
     buttns.style.display = "flex"
     buttns.style.height = "325px"
