@@ -139,7 +139,7 @@ function stationsPerRegion(region, stations, oil){
 }
 
 
-let fuel = 'disel'
+let fuel = 'bensin'
 
 //Buttons to display stations & prices in each region of the country
 const capital = document.getElementById("capital")
