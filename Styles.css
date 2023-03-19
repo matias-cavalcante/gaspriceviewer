@@ -220,11 +220,12 @@ div h3:nth-child(3) {
         text-align: center;
         color: #00425A;
         font-size: 1.3em;
-        font-weight: 600;
+        font-weight: 500;
     }
 
     #fuel-type {
         left: 5%;
+        display: flex;
         width: 90%;
         justify-content: space-between;
         padding: 0;
@@ -232,11 +233,11 @@ div h3:nth-child(3) {
 
     #fuel-type button {
         width: 35%;
-        padding-top: 8px;
-        padding-bottom: 8px;
-        font-size: 1.2em;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-size: 1.1em;
         border-radius: 8px;
-        font-weight: 500;
+        font-weight: 300;
     }
 
 
@@ -250,15 +251,15 @@ div h3:nth-child(3) {
 
     /*Dropdown*/
     #choose {
-        display: block;
         width: 100%;
+        display: block;
         text-align: center;
         margin-top: 2%;
-        font-size: 1.3em;
+        font-size: 1.1em;
         border: 0;
-        font-weight: 600;
-        padding-top: 10px;
-        padding-bottom: 10px;
+        font-weight: 300;
+        padding-top: 5px;
+        padding-bottom: 5px;
         background-color: #00425A;
     }
 
@@ -279,13 +280,14 @@ div h3:nth-child(3) {
     #table-header {
         margin: 0;
         margin-top: 4%;
+        max-height: 35px;
         position: relative;
         width: 100%;
     }
 
     #table-container {
         max-width: 100%;
-        min-height: 350px;
+        min-height: 315px;
         background-color: white;
     }
 
@@ -323,7 +325,7 @@ div h3:nth-child(3) {
     }
 }
 
-@media screen and (max-width: 440px) {
+@media screen and (max-width: 500px) {
     .table-cell-style {
         display: flex;
         justify-content: center;
