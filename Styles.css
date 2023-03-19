@@ -18,7 +18,7 @@ nav {
 
 nav h1 {
     margin: 0px;
-    font-size: 5em !important;
+    font-size: 5em;
     font-weight: 800;
     letter-spacing: 1px;
 }
@@ -63,12 +63,8 @@ nav h2 {
     background-color: black;
 }
 
-
+#ben,
 #dis {
-    background-color: #1a771a;
-}
-
-#ben {
     background-color: #1164b7;
 }
 
@@ -212,34 +208,35 @@ div h3:nth-child(3) {
         width: 90%;
         left: 5%;
         justify-content: center;
-        background-color: #00425A;
-        border-bottom-left-radius: 8px;
-        border-bottom-right-radius: 8px;
     }
 
     nav h1 {
+        color: #00425A;
         text-align: center;
-        color: white;
-        font-size: 3.5em;
+        font-size: 4.5em;
+        font-weight: 900;
     }
 
     nav h2 {
         text-align: center;
-        color: white;
-        font-size: 1.2em;
+        color: #00425A;
+        font-size: 1.3em;
+        font-weight: 600;
     }
 
     #fuel-type {
         left: 5%;
         width: 90%;
-        justify-content: space-between;
+        justify-content: space-evenly;
         padding: 0;
     }
 
     #fuel-type button {
-        width: 48%;
-        font-size: 1.4em;
-        border-radius: 30px;
+        width: 35%;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        font-size: 1.2em;
+        border-radius: 8px;
         font-weight: 500;
     }
 
@@ -315,6 +312,7 @@ div h3:nth-child(3) {
         text-align: center;
         margin-top: 2%;
         height: 40px;
+        font-size: 1.4em;
     }
 
 
@@ -326,7 +324,7 @@ div h3:nth-child(3) {
     }
 }
 
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 400px) {
     .table-cell-style {
         display: flex;
         justify-content: center;
