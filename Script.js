@@ -34,6 +34,7 @@ bensinButton.addEventListener("click", function(){
   bensinButton.style.backgroundColor = "black"
   diselButton.style.backgroundColor = "#1a771a"
   displayFuelType(regionToShow, 'bensin')
+  fuel = 'bensin'
   priceH3.textContent = "Bensin verð"
 })
 
@@ -41,6 +42,7 @@ diselButton.addEventListener("click", function(){
   diselButton.style.backgroundColor = "black"
   bensinButton.style.backgroundColor = "#1164b7"
   displayFuelType(regionToShow, 'disel')
+  fuel = 'disel'
   priceH3.textContent = "Disel verð"
 })
 
@@ -171,7 +173,7 @@ function stationsPerRegion(region, stations, oil){
 }
 
 
-let fuel = 'bensin'
+let fuel = ''
 
 //Buttons to display stations & prices in each region of the country
 const capital = document.getElementById("capital")
@@ -263,6 +265,7 @@ const buttons = [capital, south, southwest, north, east, westfjords, west]
 
 //Initial call for content display in page
 stationsPerRegion("Höfuðborgarsvæðið", stationsBuild, 'bensin');
+fuel = 'bensin'
 regionToShow = "Höfuðborgarsvæðið"
 
 
