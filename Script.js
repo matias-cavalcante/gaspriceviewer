@@ -102,7 +102,7 @@ function fillRow(imageurl, name, price, row){
 
   const pricecell = document.createElement("th");
   pricecell.style.fontSize = "1.3em"
-  pricecell.style.color = "#0c5380"
+    pricecell.style.color = "#1164b7"
   pricecell.appendChild(document.createTextNode(price))
 
   row.appendChild(logocell);

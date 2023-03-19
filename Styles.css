@@ -11,7 +11,7 @@ nav {
     margin-bottom: 0;
     display: flex;
     justify-content: space-between;
-    color: #00425A;
+    color: #0b2b6a;
 }
 
 
@@ -47,7 +47,6 @@ nav h2 {
     position: relative;
     top: 20%;
     min-width: 40%;
-
     color: white;
     border: 0;
     border-radius: 15px;
@@ -227,7 +226,7 @@ div h3:nth-child(3) {
     #fuel-type {
         left: 5%;
         width: 90%;
-        justify-content: space-evenly;
+        justify-content: space-between;
         padding: 0;
     }
 
@@ -286,7 +285,7 @@ div h3:nth-child(3) {
 
     #table-container {
         max-width: 100%;
-        min-height: 400px;
+        min-height: 350px;
         background-color: white;
     }
 
@@ -324,7 +323,7 @@ div h3:nth-child(3) {
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 440px) {
     .table-cell-style {
         display: flex;
         justify-content: center;
