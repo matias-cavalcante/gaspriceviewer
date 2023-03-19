@@ -33,7 +33,9 @@ p {
     display: none;
     width: 90%;
     position: relative;
+    text-align: justify;
     left: 5%;
+    font-size: 0.8em;
 }
 
 #main-container {
@@ -71,7 +73,7 @@ p {
 
 #ben,
 #dis {
-    background-color: #1164b7;
+    background-color: #1F8A70;
 }
 
 #title-box {
