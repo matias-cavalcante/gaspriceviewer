@@ -1,6 +1,11 @@
 const reveal = document.getElementById("choose")
 const buttns = document.getElementById("regions")
 
+const regionDisplay = document.getElementById("current-region")
+
+const headerDiv = document.querySelector("#table-header");
+const priceH3 = headerDiv.querySelectorAll("h3")[2];
+
 
 const divTableContainer = document.getElementById("table-container");
 const table = document.createElement("table");
@@ -17,6 +22,10 @@ function displayFuelType(region, fuelname){
   regionToShow = region
 }
 
+function writeRegion(writeme){
+  regionDisplay.textContent = writeme
+}
+
 
 const bensinButton = document.getElementById("ben")
 const diselButton = document.getElementById("dis")
@@ -25,12 +34,14 @@ bensinButton.addEventListener("click", function(){
   bensinButton.style.backgroundColor = "black"
   diselButton.style.backgroundColor = "#1a771a"
   displayFuelType(regionToShow, 'bensin')
+  priceH3.textContent = "Bensin verð"
 })
 
 diselButton.addEventListener("click", function(){
   diselButton.style.backgroundColor = "black"
   bensinButton.style.backgroundColor = "#1164b7"
   displayFuelType(regionToShow, 'disel')
+  priceH3.textContent = "Disel verð"
 })
 
 
@@ -48,6 +59,14 @@ const stationsBuild = [
   { code: 'orkan', url: orkanUrl, img: 'logos/orkan.png', time: 600200 },
   { code: 'n1', url: n1Url, img: 'logos/n1.png', time: 600300 },
   { code: 'atl',url: atloliaUrl, img: 'logos/atlantsolia.png', time: 600500 }  ];
+
+
+function paintAndreset(resetthis, painthis){
+  for (let bt = 0; bt < resetthis.length; bt++){
+    resetthis[bt].style.backgroundColor = "unset"
+  }
+  painthis.style.backgroundColor = "#00425A"
+}
 
 let revealState = false;
 
@@ -160,9 +179,11 @@ capital.addEventListener("click", function(){
   clearTable(table)
   if (window.innerWidth < 650){
     buttns.style.display = "none";
+    writeRegion("Höfuðborgarsvæðið")
   }
   stationsPerRegion("Höfuðborgarsvæðið", stationsBuild, fuel)
   regionToShow = "Höfuðborgarsvæðið"
+  paintAndreset(buttons, capital)
 })
 
 const south = document.getElementById("south")
@@ -170,9 +191,11 @@ south.addEventListener("click", function(){
   clearTable(table)
   if (window.innerWidth < 650){
     buttns.style.display = "none";
+    writeRegion("Suðurland")
   }
   stationsPerRegion("Suðurland", stationsBuild, fuel)
   regionToShow = "Suðurland"
+  paintAndreset(buttons, south)
 })
 
 const north = document.getElementById("north")
@@ -180,9 +203,11 @@ north.addEventListener("click", function(){
   clearTable(table)
   if (window.innerWidth < 650){
     buttns.style.display = "none";
+    writeRegion("Norðurland")
   }
   stationsPerRegion("Norðurland", stationsBuild, fuel)
   regionToShow = "Norðurland"
+  paintAndreset(buttons, north)
 })
 
 const westfjords = document.getElementById("westfjords")
@@ -190,10 +215,11 @@ westfjords.addEventListener("click", function(){
   clearTable(table)
   if (window.innerWidth < 650){
     buttns.style.display = "none";
+    writeRegion("Vestfirðir")
   }
   stationsPerRegion("Vestfirðir", stationsBuild, fuel)
   regionToShow = "Vestfirðir"
-  
+  paintAndreset(buttons, westfjords)
 })
 
 const west = document.getElementById("west")
@@ -201,9 +227,11 @@ west.addEventListener("click", function(){
   clearTable(table)
   if (window.innerWidth < 650){
     buttns.style.display = "none";
+    writeRegion("Vesturland")
   }
   stationsPerRegion("Vesturland", stationsBuild, fuel)
   regionToShow = "Vesturland"
+  paintAndreset(buttons, west)
 })
 
 const east = document.getElementById("east")
@@ -211,9 +239,11 @@ east.addEventListener("click", function(){
   clearTable(table)
   if (window.innerWidth < 650){
     buttns.style.display = "none";
+    writeRegion("Austurland")
   }
   stationsPerRegion("Austurland", stationsBuild, fuel)
   regionToShow = "Austurland"
+  paintAndreset(buttons, east)
 })
 
 const southwest = document.getElementById("southwest")
@@ -221,10 +251,15 @@ southwest.addEventListener("click", function(){
   clearTable(table)
   if (window.innerWidth < 650){
     buttns.style.display = "none";
+    writeRegion("Suðvesturhornið")
   }
   stationsPerRegion("Suðvesturhornið", stationsBuild, fuel)
   regionToShow = "Suðvesturhornið"
+  southwest
 })
+
+const buttons = [capital, south, southwest, north, east, westfjords, west]
+
 
 //Initial call for content display in page
 stationsPerRegion("Höfuðborgarsvæðið", stationsBuild, 'bensin');
