@@ -326,13 +326,13 @@ div h3:nth-child(3) {
 
     #table-container {
         max-width: 100%;
-        max-height: 300px;
+        max-height: 251px;
         background-color: white;
     }
 
     .table-style {
         padding: 10px;
-        max-height: 300px;
+        max-height: 250px;
     }
 
     .table-cell-style {
