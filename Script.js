@@ -1,7 +1,25 @@
 const reveal = document.getElementById("choose")
 const buttns = document.getElementById("regions")
 
-const regionDisplay = document.getElementById("current-region")
+const burger = document.getElementsByClassName("hamburger")[0];
+const revelnav = document.getElementsByClassName("navbar-list")[0];
+const listItems = revelnav.getElementsByTagName("li");
+const navButtons = document.getElementsByClassName("nav-button");
+const body = document.getElementsByTagName("body")[0];
+
+burger.addEventListener("click", function() {
+  revelnav.classList.toggle('burger-style');
+  body.classList.toggle('no-scroll');
+
+  for (let i = 0; i < navButtons.length; i++) {
+    navButtons[i].classList.toggle("white-text");
+
+    listItems[i].classList.toggle("menu-displayed")
+  }
+});
+
+
+
 
 const headerDiv = document.querySelector("#table-header");
 const priceH3 = headerDiv.querySelectorAll("h3")[2];
@@ -20,10 +38,6 @@ function displayFuelType(region, fuelname){
   }
   stationsPerRegion(region, stationsBuild, fuelname)
   regionToShow = region
-}
-
-function writeRegion(writeme){
-  regionDisplay.textContent = writeme
 }
 
 
@@ -74,10 +88,14 @@ let revealState = false;
 
 reveal.addEventListener("click", function(){
   if (revealState == false){
-    buttns.style.display = "flex"
-    buttns.style.flexDirection = "column"
-    buttns.style.height = "65vh"
-    buttns.style.justifyContent = "space-around"
+    /*buttns.style.height = "55%"*/
+    /*buttns.style.position = "absolute";*/
+    buttns.style.display = "flex";
+    buttns.style.justifyContent = "space-around";
+    buttns.style.flexDirection = "column";
+    buttns.style.zIndex = "5"
+    
+    reveal.style.marginBottom = "0"
     revealState = true
   }else if(revealState == true){
     buttns.style.display = "none"
@@ -118,18 +136,15 @@ function fillRow(imageurl, name, price, row){
     namecell.appendChild(document.createTextNode(name))
   }
   
-
- 
-
   const pricecell = document.createElement("th");
   pricecell.style.fontSize = "1.3em"
-    pricecell.style.color = "#1F8A70"
+   pricecell.style.color = "#1C2E35";
   pricecell.appendChild(document.createTextNode(price))
-
   row.appendChild(logocell);
   row.appendChild(namecell);
   row.appendChild(pricecell);
 }
+
 
 function newRows(filtered, imglink, gasprice, type) {
   return filtered.map(station => {
@@ -181,7 +196,6 @@ capital.addEventListener("click", function(){
   clearTable(table)
   if (window.innerWidth < 650){
     buttns.style.display = "none";
-    writeRegion("Höfuðborgarsvæðið")
   }
   stationsPerRegion("Höfuðborgarsvæðið", stationsBuild, fuel)
   regionToShow = "Höfuðborgarsvæðið"
@@ -193,7 +207,6 @@ south.addEventListener("click", function(){
   clearTable(table)
   if (window.innerWidth < 650){
     buttns.style.display = "none";
-    writeRegion("Suðurland")
   }
   stationsPerRegion("Suðurland", stationsBuild, fuel)
   regionToShow = "Suðurland"
@@ -205,7 +218,6 @@ north.addEventListener("click", function(){
   clearTable(table)
   if (window.innerWidth < 650){
     buttns.style.display = "none";
-    writeRegion("Norðurland")
   }
   stationsPerRegion("Norðurland", stationsBuild, fuel)
   regionToShow = "Norðurland"
@@ -217,7 +229,6 @@ westfjords.addEventListener("click", function(){
   clearTable(table)
   if (window.innerWidth < 650){
     buttns.style.display = "none";
-    writeRegion("Vestfirðir")
   }
   stationsPerRegion("Vestfirðir", stationsBuild, fuel)
   regionToShow = "Vestfirðir"
@@ -229,10 +240,11 @@ west.addEventListener("click", function(){
   clearTable(table)
   if (window.innerWidth < 650){
     buttns.style.display = "none";
-    writeRegion("Vesturland")
   }
   stationsPerRegion("Vesturland", stationsBuild, fuel)
   regionToShow = "Vesturland"
+  reveal.innerText = "Vesturland"
+  buttns.style.display = "none";
   paintAndreset(buttons, west)
 })
 
@@ -241,7 +253,6 @@ east.addEventListener("click", function(){
   clearTable(table)
   if (window.innerWidth < 650){
     buttns.style.display = "none";
-    writeRegion("Austurland")
   }
   stationsPerRegion("Austurland", stationsBuild, fuel)
   regionToShow = "Austurland"
@@ -253,7 +264,6 @@ southwest.addEventListener("click", function(){
   clearTable(table)
   if (window.innerWidth < 650){
     buttns.style.display = "none";
-    writeRegion("Suðvesturhornið")
   }
   stationsPerRegion("Suðvesturhornið", stationsBuild, fuel)
   regionToShow = "Suðvesturhornið"
@@ -268,17 +278,6 @@ stationsPerRegion("Höfuðborgarsvæðið", stationsBuild, 'bensin');
 fuel = 'bensin'
 regionToShow = "Höfuðborgarsvæðið"
 
-
-window.addEventListener('resize', function() {
-  /*Carefull here when resizing back up*/ 
-  if (window.innerWidth > 650) {
-    buttns.style.display = "flex"
-    buttns.style.height = "325px"
-
-    }else if (window.innerWidth < 650){
-        buttns.style.display = "none"
-    }
-});
 
 
 

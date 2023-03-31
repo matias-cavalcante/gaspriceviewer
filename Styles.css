@@ -1,117 +1,192 @@
+html {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #5AE4A7;
+}
+
 body {
     font-family: Roboto, Arial, Helvetica, sans-serif;
     margin: 0;
-    overflow-x: hidden;
-    background-color: #F9F5EB;
 }
 
+
+/*Here begins the code for the new section (NAV BAR CONTENT), the first one when visiting the site*/
 nav {
-    min-height: 30px;
-    padding: 10px;
-    margin-bottom: 0;
+    left: 10%;
+    width: 80%;
+    padding: 5px;
+    position: relative;
     display: flex;
     justify-content: space-between;
     color: black;
 }
 
-
-
-nav h1 {
-    margin: 0px;
-    font-size: 5em;
-    font-weight: 800;
-    letter-spacing: 1px;
+#title-box {
+    display: flex;
+    align-items: center;
+    z-index: 12;
 }
 
-nav h2 {
-    font-size: 1.3em;
-    font-weight: 600;
-    letter-spacing: 1px;
+
+.hamburger {
+    display: none;
+    background-color: unset;
+    border: black;
+    color: black;
+    font-size: 2.3em;
+    cursor: pointer;
+}
+
+#logo-image {
+    width: 2.1em;
+}
+
+nav h1 {
+    display: inline-block;
+    margin: 0px;
+    font-size: 2.3em;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+
+li {
+    padding-left: 5px;
+    padding-right: 30px;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: 800;
+}
+
+h4,
+p {
+    font-size: 0.9em;
+    font-weight: 700;
 }
 
 p {
-    display: none;
-    width: 90%;
-    position: relative;
-    text-align: justify;
-    left: 5%;
-    font-size: 0.9em;
+    color: rgb(75, 74, 74)
 }
+
+/*Below until next comment is the hero section or first section*/
+
+#intro {
+    width: 80%;
+    height: 90vh;
+    position: relative;
+    left: 10%;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+#hero-text {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+#hero-text h1 {
+    font-size: 3em;
+    font-weight: 900;
+}
+
+#hero-text h3 {
+    font-weight: 600;
+    margin-bottom: 15%;
+}
+
+#hero-text button {
+    min-width: 215px;
+    height: 2.5em;
+    font-size: 1.4em;
+    border: none;
+    background-color: #5AE4A7;
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.6);
+}
+
+#hero-img {
+    position: relative;
+    top: 5%;
+    /*height: 59vh;*/
+    max-width: 550px;
+    grid-column-start: 5;
+    grid-column-end: 7;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+/*Second section begins here. The one with the content of the table*/
 
 #main-container {
-    display: flex;
-    justify-content: space-evenly;
+    width: 80%;
+    position: relative;
+    left: 10%;
+    margin-top: 10%;
+    margin-bottom: 50px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: 70px auto;
 }
 
-#fuel-type {
-    position: relative;
-    right: 10.5%;
-    width: 20%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: start;
+#sub-section-text {
+    grid-column-start: 1;
+    grid-column-end: 9;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    margin: 0;
+    font-size: 1.6em;
 }
 
-#fuel-type button {
+
+#dropdown-box {
     position: relative;
-    top: 20%;
-    min-width: 40%;
-    color: white;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 1;
+}
+
+#choose {
+    width: 220px;
+    height: 30px;
+    margin-bottom: 25%;
     border: 0;
-    border-radius: 15px;
-    padding-top: 2%;
-    padding-bottom: 2%;
     font-size: 1.1em;
-    font-weight: 500;
+    background-color: #5AE4A7;
     box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.5);
 }
 
-#fuel-type button:hover {
+#choose:hover {
     cursor: pointer;
-    background: #00425A;
-}
-
-#ben,
-#dis {
-    /*background-color: #1F8A70;*/
-    background: linear-gradient(360deg, #1F8A70 15%, #0E8388 85%);
-}
-
-
-#title-box {
-    position: relative;
-    left: 10.5%;
-}
-
-
-
-/*Here here*/
-#choose {
+    background-color: #1C2E35;
     color: white;
-    display: none;
-    border-radius: 8px;
 }
-
-#dropdown-box {
-    display: inline-block;
-}
-
 
 #regions {
-    width: 250px;
-    height: 325px;
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-    /*background-color: #00425A;*/
-    /*background: linear-gradient(360deg, #00425A 12%, #3F497F 88%);*/
-    background: linear-gradient(360deg, #1F8A70 15%, #0E8388 85%);
-    border-radius: 9px;
+    width: 220px;
+    /*height: 55%;*/
+    /*top: 100%;*/
+    display: none;
+    top: 26.5%;
+    position: absolute;
+    background-color: #21857B;
     box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.5);
 }
 
 #regions button {
-    height: 35px;
     text-align: center;
     margin-top: 2%;
     margin-bottom: 2%;
@@ -124,25 +199,43 @@ p {
 
 #regions button:hover {
     transition: 0.8s;
-    background-color: #00425A;
-    color: white;
     cursor: pointer;
+    background-color: #1C2E35;
 }
 
-#current-region {
-    display: none;
+#fuel-type {
+    width: 100%;
+    grid-column-start: 1;
+    display: flex;
+    justify-content: space-between;
+}
+
+#fuel-type button {
+    width: 100px;
+    height: 30px;
+    border: 0;
+    font-size: 1.1em;
+    background-color: #5AE4A7;
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+#fuel-type button:hover {
+    cursor: pointer;
+    background: #1C2E35;
+    color: white;
+}
+
+#table-block {
+    grid-row-start: 2;
+    grid-column-start: 8;
 }
 
 #table-header {
+    max-height: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-height: 50px;
-    /*background-color: #00425A;*/
-    /*background: linear-gradient(360deg, #00425A 10%, #3F497F 90%);*/
-    background: linear-gradient(360deg, #1F8A70 15%, #0E8388 85%);
-    border-top-right-radius: 8px;
-    border-top-left-radius: 8px;
+    background-color: #1C2E35;
     color: white;
 }
 
@@ -166,23 +259,20 @@ div h3:nth-child(3) {
     overflow-y: scroll;
     overflow-x: hidden;
     box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.6);
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-
 }
 
 #table-container::-webkit-scrollbar {
     visibility: visible;
     width: 8px;
-    /*background-color: #0c5380;*/
-    background: linear-gradient(360deg, #1F8A70 15%, #0E8388 85%);
-    border-bottom-right-radius: 8px;
+    background-color: #e5f4ed;
 }
 
 #table-container::-webkit-scrollbar-thumb {
     background-color: #00425A;
     border-radius: 5px;
 }
+
+/*Within the SECOND SECTION, code that will be applied using JS*/
 
 .table-style {
     width: 100%;
@@ -192,15 +282,23 @@ div h3:nth-child(3) {
 
 .table-row-style {
     height: 43px;
-    background-color: white;
+    padding: 0;
+}
+
+tr:nth-child(even) {
+    background-color: #e5f4ed;
+}
+
+tr:nth-child(odd) {
+    background-color: #ffffff;
 }
 
 .table-cell-style {
     width: 60%;
+    padding-left: 20%;
     font-size: 1.3em;
     font-weight: normal;
     text-align: start;
-    padding-left: 20%;
 }
 
 .logo-style {
@@ -212,156 +310,300 @@ div h3:nth-child(3) {
     box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.6);
 }
 
+/*LAST SECTION - ABOUT*/
 
-@media screen and (max-width: 670px) {
+#about {
+    margin-top: 7%;
+}
 
-    nav {
-        height: 12%;
+#about h1 {
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: 700;
+}
+
+#about h1,
+#about-text {
+    background-color: #1C2E35;
+    color: #ffffff;
+    margin: 0;
+}
+
+#about h1 {
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+#about-text {
+    text-align: justify;
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-bottom: 3%;
+    font-size: 1.1em;
+}
+
+.about-blocks {
+    width: 60%;
+    position: relative;
+    left: 20%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.about-blocks h2 {
+    position: relative;
+    top: 30%;
+    grid-row-start: 1;
+}
+
+.about-blocks ul {
+    display: flex;
+    justify-content: space-between;
+    grid-row-start: 2;
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
+.about-blocks ul p {
+    max-width: 80%;
+    font-size: 1.1em;
+}
+
+.about-blocks ul img {
+    max-width: 60px;
+    margin-right: 5%;
+    margin-bottom: 20px;
+    grid-column-start: 3;
+    grid-column-end: 4;
+}
+
+footer p {
+    text-align: center;
+}
+
+/*MEDIA QUERIES HERE */
+
+/*First section*/
+
+@media screen and (max-width: 1100px) {
+
+    /*First section again  --------------------------------*/
+
+    #intro {
         width: 100%;
-        flex-wrap: wrap;
-        padding: 0;
-        margin: 0;
-        margin-bottom: 4%;
-    }
-
-    #title-box {
-        width: 90%;
-        left: 5%;
-        justify-content: center;
-    }
-
-    nav h1 {
-        /*color: #00425A;*/
-        text-align: center;
-        font-size: 4.5em;
-        font-weight: 900;
-    }
-
-    nav h2 {
-        text-align: center;
-        /*color: #00425A;*/
-        font-size: 1.5em;
-        font-weight: 500;
-    }
-
-    p {
-        display: initial;
-    }
-
-    #fuel-type {
-        left: 5%;
+        left: 0%;
         display: flex;
-        width: 90%;
-        justify-content: space-between;
-        padding: 0;
-    }
-
-    #fuel-type button {
-        width: 35%;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        font-size: 1.1em;
-        border-radius: 8px;
-        font-weight: 300;
-    }
-
-
-
-
-
-    #main-container {
-        flex-wrap: wrap;
         justify-content: center;
+        flex-wrap: wrap;
     }
 
-    /*Dropdown*/
-    #choose {
+    #hero-text {
         width: 100%;
-        display: block;
         text-align: center;
-        margin-top: 2%;
-        font-size: 1.1em;
-        border: 0;
-        font-weight: 300;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        /*background-color: #00425A;*/
-        /*background: linear-gradient(360deg, #00425A 12%, #3F497F 88%);*/
-        background: linear-gradient(360deg, #1F8A70 15%, #0E8388 85%);
-        box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.5);
-
     }
 
-    #dropdown-box {
-        position: absolute;
-        width: 90%;
-        z-index: 10;
-    }
-
-    /*Dropdown*/
-
-    #current-region {
-        display: block;
-        font-size: 1em;
-        font-weight: bolder;
-    }
-
-    #table-block {
-        width: 90%;
-        margin: 0;
-        margin-top: 10%;
-    }
-
-    #table-header {
-        margin: 0;
-        margin-top: 1%;
-        max-height: 35px;
-        position: relative;
-        width: 100%;
-    }
-
-    #table-header h3 {
-        font-size: 1em;
-    }
-
-    #table-container {
-        max-width: 100%;
-        max-height: 180px;
-        background-color: white;
-    }
-
-    .table-style {
-        padding: 10px;
-        max-height: 180px;
-    }
-
-    .table-cell-style {
-        width: auto;
-        font-size: 0.9em;
-        font-weight: 600;
-        text-align: center;
-        padding-left: 0;
+    #hero-text button {
+        width: 40%;
     }
 
     #regions {
+        top: 40%;
+    }
+
+    #dropdown-box {
+        margin-bottom: 15%;
+    }
+
+    .about-blocks {
+        width: 90%;
+        left: 5%;
+    }
+
+
+    /*Main container section ------------------------------*/
+
+    #main-container {
         width: 100%;
-        min-height: 200px;
-        opacity: 0.95;
+        left: 0%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+        margin-top: 25%;
+    }
+
+    #main-container h2 {
+        text-align: center;
+    }
+
+
+
+    #dropdown-box {
+        width: 90%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    #dropdown-box h4 {
+        font-size: 1.1em;
+    }
+
+    #choose {
+        height: 40px;
+    }
+
+    #fuel-type {
+        justify-content: space-evenly;
+    }
+
+    #fuel-type button {
+        width: 150px;
+        height: 40px;
+    }
+
+    #table-block {
+        max-width: 90%;
+    }
+
+    #table-container {
+        max-height: 400px;
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 610px) {
+
+    header {
+        padding-left: 3%;
+        padding-right: 3%;
+    }
+
+    nav {
+        align-items: center;
+    }
+
+    nav h1 {
+        font-size: 1.8em;
+    }
+
+    .navbar-list {
         display: none;
     }
 
-    #regions button {
-        text-align: center;
-        margin-top: 2%;
-        height: 40px;
-        font-size: 1.2em;
+    .hamburger {
+        display: block;
+        padding-bottom: 1%;
+        z-index: 9;
     }
 
+    #hero-text button {
+        margin-top: 10%;
+    }
 
+    .about-blocks h2 {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        text-align: center;
+    }
+
+    .about-blocks ul {
+        flex-direction: column;
+    }
+
+    .about-blocks ul img {
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
 }
 
-@media screen and (max-width: 650px) {
-    #table-block {
-        margin-top: 15%;
+@media screen and (max-width: 560px) {
+
+    nav {
+        width: 100%;
+        left: 0%;
+        padding-left: 0;
+        padding-right: 0;
     }
+
+
+    #hero-img {
+        max-width: 400px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+
+    #intro {
+        height: 75vh;
+    }
+
+    #hero-text h1 {
+        margin-top: 18%;
+        font-size: 2.5em;
+    }
+
+    #hero-img {
+        max-width: 275px;
+        max-height: 200px;
+    }
+
+    #main-container {
+        margin-top: 5%;
+    }
+
+    #regions {
+        height: 75%;
+    }
+
+    #sub-section-text {
+        margin-top: 5%;
+        font-size: 1.4em;
+    }
+
+    /*About section below*/
+    #about-text {
+        padding: 10%;
+    }
+}
+
+/*THIS IS TO APPLY WHEN THE BURGER BUTTON MENU IS PRESSED*/
+
+
+.burger-style {
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    z-index: 6;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #21857B;
+}
+
+.no-scroll {
+    overflow: hidden;
+}
+
+.white-text {
+    padding: 0;
+    font-size: 1.5em;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: white;
+}
+
+.menu-displayed {
+    width: 55%;
+    padding: 0;
+    padding-bottom: 10px;
+    text-align: center;
+    border-bottom: solid 1px black;
 }

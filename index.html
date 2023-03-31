@@ -16,21 +16,36 @@
 <header>
     <nav>
         <div id="title-box">
+            <img src="flama.png" id="logo-image">
             <h1>ICEGAS</h1>
-            <h2>Eldsneytisverð á Íslandi</h2>
         </div>
-        <p>Eldsneytisverð á öllum bensínstöðvum landsins. Veljið landshluta og eldsneytisgerð</p>
-        <div id="fuel-type">
-            <button id="ben">bensin</button>
-            <button id="dis">disel</button>
-        </div>
+        <button class="hamburger">&#9776;</button>
+        <ul class="navbar-list">
+            <li><a href="#" class="nav-button">HOME</a></li>
+            <li><a href="#" class="nav-button">ABOUT</a></li>
+            <li><a href="#" class="nav-button">CONTACT</a></li>
+        </ul>
     </nav>
 </header>
 
 <body>
+    <section id="intro">
+        <div id="hero-text">
+            <h1>FUEL PRICES IN<br> ICELAND NOW</h1>
+            <h3>Find the chepeast fuel price everywhere</h3>
+            <button>Check prices</button>
+        </div>
+        <img src="5637995.jpg" id="hero-img">
+
+
+    </section>
+    <!--<p>Eldsneytisverð á öllum bensínstöðvum landsins. Veljið landshluta og eldsneytisgerð</p>-->
+
     <section id="main-container">
+        <h2 id="sub-section-text">CHECK THE TYPE OF FUEL AND REGION YOU WANT TO SEE</h2>
         <section id="dropdown-box">
-            <button id="choose">Velja svæði</button>
+            <h4>select region</h4>
+            <button id="choose">Höfuðborgarsvæðið</button>
             <div id="regions">
                 <button id="capital">Höfuðborgarsvæðið</button>
                 <button id="southwest">Suðvesturhornið</button>
@@ -40,10 +55,15 @@
                 <button id="westfjords">Vestfirðir</button>
                 <button id="west">Vesturland</button>
             </div>
+            <h4>fuel type</h4>
+            <div id="fuel-type">
+                <button id="ben">bensin</button>
+                <button id="dis">disel</button>
+            </div>
+            <p>Last update was x minutes ago</p>
         </section>
 
         <div id="table-block">
-            <h2 id="current-region">Höfuðborgarsvæðið</h2>
             <div id="table-header">
                 <h3>Félag</h3>
                 <h3>Stöð</h3>
@@ -51,6 +71,34 @@
             </div>
             <div id="table-container"> </div>
         </div>
+    </section>
+
+    <section id="about">
+        <h1>ABOUT ICEGAS</h1>
+        <p id="about-text">Icegas was built with to make gas prices available, always, so you can save money
+            and help you keep track of how much you spend. It was built with enthusiasm and passion by me, Matias, a
+            developer in Iceland
+        </p>
+
+        <div class="about-blocks">
+            <h2>UPDATED PRICES</h2>
+            <ul>
+                <p>With Icegas you can always see the latest gas prices, listed from cheapest to more expensive</p>
+                <img src="refresh.png">
+            </ul>
+        </div>
+
+        <div class="about-blocks">
+            <h2>SAVE MONEY</h2>
+            <ul>
+                <p>Icegas keeps track of all the prices of all gas companies, so you can decide where to go</p>
+                <img src="piggy-bank.png">
+            </ul>
+        </div>
+
+        <footer>
+            <p>Made by Matias Cavalcante</p>
+        </footer>
     </section>
 
     <script src="Script.js"></script>
