@@ -5,6 +5,9 @@ html {
 
 header {
     background-color: #5AE4A7;
+    position: fixed;
+    z-index: 20;
+    width: 100%;
 }
 
 body {
@@ -334,7 +337,7 @@ tr:nth-child(odd) {
 }
 
 #about h1 {
-    padding-top: 3%;
+    padding-top: 5%;
     padding-bottom: 3%;
 }
 
@@ -396,7 +399,9 @@ footer p {
 
     #intro {
         width: 100%;
+        min-height: 85vh;
         left: 0%;
+        padding-top: 70px;
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
@@ -465,7 +470,7 @@ footer p {
     }
 
     #fuel-type button {
-        width: 150px;
+        width: 110px;
         height: 40px;
     }
 
@@ -501,6 +506,7 @@ footer p {
     .hamburger {
         display: block;
         padding-bottom: 1%;
+        margin-right: 5%;
         z-index: 9;
     }
 
@@ -512,9 +518,23 @@ footer p {
         margin-top: 10%;
     }
 
+    .about-blocks {
+        grid-template-rows: 1fr 3fr;
+        background-color: #baf3e0;
+        margin-top: 5%;
+        padding-bottom: 5%;
+    }
+
+
+    .about-blocks ul p {
+        max-width: 90%;
+        font-size: 1.1em;
+        text-align: justify;
+    }
+
     .about-blocks h2 {
-        grid-column-start: 2;
-        grid-column-end: 3;
+        grid-column-start: 1;
+        grid-column-end: 4;
         text-align: center;
     }
 

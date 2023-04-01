@@ -7,6 +7,7 @@ const listItems = revelnav.getElementsByTagName("li");
 const navButtons = document.getElementsByClassName("nav-button");
 const body = document.getElementsByTagName("body")[0];
 
+
 burger.addEventListener("click", function() {
   revelnav.classList.toggle('burger-style');
   body.classList.toggle('no-scroll');
