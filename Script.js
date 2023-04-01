@@ -19,6 +19,15 @@ burger.addEventListener("click", function() {
 });
 
 
+const callToActionButton = document.querySelector('.call-to-action');
+const secondSection = document.querySelector('#main-container');
+
+callToActionButton.addEventListener('click', () => {
+  secondSection.scrollIntoView({ behavior: 'smooth' });
+});
+
+
+
 
 
 const headerDiv = document.querySelector("#table-header");
@@ -45,16 +54,12 @@ const bensinButton = document.getElementById("ben")
 const diselButton = document.getElementById("dis")
 
 bensinButton.addEventListener("click", function(){
-  bensinButton.style.backgroundColor = "black"
-  diselButton.style.backgroundColor = "#1a771a"
   displayFuelType(regionToShow, 'bensin')
   fuel = 'bensin'
   priceH3.textContent = "Bensin verð"
 })
 
 diselButton.addEventListener("click", function(){
-  diselButton.style.backgroundColor = "black"
-  bensinButton.style.backgroundColor = "#1164b7"
   displayFuelType(regionToShow, 'disel')
   fuel = 'disel'
   priceH3.textContent = "Disel verð"

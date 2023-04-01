@@ -118,6 +118,10 @@ p {
     box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.6);
 }
 
+#hero-text button:hover {
+    cursor: pointer;
+}
+
 #hero-img {
     position: relative;
     top: 5%;
@@ -221,7 +225,7 @@ p {
 
 #fuel-type button:hover {
     cursor: pointer;
-    background: #1C2E35;
+    background: #7FF1CB;
     color: white;
 }
 
@@ -500,6 +504,10 @@ footer p {
         z-index: 9;
     }
 
+    #intro {
+        margin-bottom: 30%;
+    }
+
     #hero-text button {
         margin-top: 10%;
     }
@@ -534,6 +542,7 @@ footer p {
     #hero-img {
         max-width: 400px;
     }
+
 }
 
 @media screen and (max-width: 420px) {
@@ -556,8 +565,13 @@ footer p {
         margin-top: 5%;
     }
 
+    #choose {
+        width: 90%;
+    }
+
     #regions {
-        height: 75%;
+        width: 90%;
+        height: 83%;
     }
 
     #sub-section-text {
