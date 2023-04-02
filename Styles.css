@@ -77,7 +77,7 @@ a {
 h4,
 p {
     font-size: 0.9em;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 p {
@@ -110,7 +110,7 @@ p {
 }
 
 #hero-text h3 {
-    font-weight: 600;
+    font-weight: 500;
     margin-bottom: 15%;
 }
 
@@ -118,6 +118,9 @@ p {
     min-width: 215px;
     height: 2.5em;
     font-size: 1.4em;
+
+    font-weight: 600;
+
     border: none;
     background-color: #5AE4A7;
     box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.6);
@@ -437,12 +440,6 @@ footer p {
         margin-bottom: 15%;
     }
 
-    .about-blocks {
-        width: 90%;
-        left: 5%;
-    }
-
-
     /*Main container section ------------------------------*/
 
     #main-container {
@@ -495,6 +492,22 @@ footer p {
         max-height: 400px;
         max-width: 100%;
     }
+
+    /*About section*/
+
+    .about-blocks {
+        width: 90%;
+        left: 5%;
+    }
+
+    #about-text {
+        text-align: justify;
+        padding-left: 5%;
+        padding-right: 8%;
+        padding-bottom: 3%;
+        font-size: 1.1em;
+        font-weight: 500;
+    }
 }
 
 @media screen and (max-width: 610px) {
@@ -506,6 +519,13 @@ footer p {
 
     nav {
         align-items: center;
+    }
+
+    nav {
+        width: 100%;
+        left: 0%;
+        padding-left: 0;
+        padding-right: 0;
     }
 
     nav h1 {
@@ -539,7 +559,7 @@ footer p {
         display: block;
         position: relative;
         top: 5%;
-        max-width: 275px;
+        max-width: 325px;
         grid-column-start: 5;
         grid-column-end: 7;
         grid-row-start: 2;
@@ -586,12 +606,7 @@ footer p {
 
 @media screen and (max-width: 560px) {
 
-    nav {
-        width: 100%;
-        left: 0%;
-        padding-left: 0;
-        padding-right: 0;
-    }
+
 
 
     #hero-img {
@@ -614,6 +629,13 @@ footer p {
     }
 
 }
+
+@media screen and (max-width: 500px) {
+    #hero-img {
+        max-width: 300px;
+    }
+}
+
 
 @media screen and (max-width: 420px) {
 
@@ -644,6 +666,14 @@ footer p {
         height: 83%;
     }
 
+    .table-cell-style {
+        width: 80%;
+        padding-left: 10%;
+        font-size: 1em;
+        font-weight: normal;
+        text-align: start;
+    }
+
     #sub-section-text {
         margin-top: 5%;
         font-size: 1.4em;
@@ -652,6 +682,13 @@ footer p {
     /*About section below*/
     #about-text {
         padding: 10%;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    #hero-img {
+        max-width: 20px;
+        max-height: 135px;
     }
 }
 
@@ -700,4 +737,13 @@ footer p {
     padding-bottom: 10px;
     text-align: center;
     border-bottom: solid 1px black;
+}
+
+button {
+    -webkit-appearance: none;
+    /* Override default appearance for WebKit browsers */
+    -moz-appearance: none;
+    /* Override default appearance for Mozilla browsers */
+    appearance: none;
+    /* Override default appearance for modern browsers */
 }
