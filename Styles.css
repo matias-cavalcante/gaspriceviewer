@@ -110,7 +110,7 @@ p {
 }
 
 #hero-text h3 {
-    font-weight: 300;
+    font-weight: 600;
     margin-bottom: 15%;
 }
 
@@ -397,6 +397,9 @@ tr:nth-child(odd) {
 footer p {
     text-align: center;
     margin: 0;
+    margin-top: 25px;
+    padding-bottom: 30px;
+    color: white;
 }
 
 /*MEDIA QUERIES HERE */
@@ -476,11 +479,11 @@ footer p {
     }
 
     #fuel-type {
-        justify-content: space-evenly;
+        justify-content: space-between;
     }
 
     #fuel-type button {
-        width: 110px;
+        width: 40vw;
         height: 40px;
     }
 
@@ -559,7 +562,14 @@ footer p {
     .about-blocks h2 {
         grid-column-start: 1;
         grid-column-end: 4;
-        text-align: center;
+        text-align: start;
+        max-width: 90%;
+        position: relative;
+        left: 5%;
+    }
+
+    .about-blocks h1 {
+        font-size: 1.2em;
     }
 
     .about-blocks ul {
@@ -586,6 +596,21 @@ footer p {
 
     #hero-img {
         max-width: 400px;
+    }
+
+    #table-container {
+        max-width: 95%;
+        padding-left: 2.5%;
+        padding-right: 2.5%;
+    }
+
+
+    .table-cell-style {
+        width: 80%;
+        padding-left: 10%;
+        font-size: 1.3em;
+        font-weight: normal;
+        text-align: start;
     }
 
 }
