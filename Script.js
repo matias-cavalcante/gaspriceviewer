@@ -1,23 +1,58 @@
 const reveal = document.getElementById("choose")
 const buttns = document.getElementById("regions")
 
-const burger = document.getElementsByClassName("hamburger")[0];
-const revelnav = document.getElementsByClassName("navbar-list")[0];
-const listItems = revelnav.getElementsByTagName("li");
-const navButtons = document.getElementsByClassName("nav-button");
-const body = document.getElementsByTagName("body")[0];
+/*MENU BUTTONS RESPONSIVE HERE */
 
+const burger = document.querySelector(".hamburger");
+const revelnav = document.querySelector(".navbar-list");
+const listItems = revelnav.querySelectorAll("li");
+const navButtons = document.querySelectorAll(".nav-button");
+const body = document.querySelector("body");
 
-burger.addEventListener("click", function() {
+let burgerState = false;
+
+navButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    revelnav.classList.remove('burger-style');
+    body.classList.remove('no-scroll');
+    burgerState = false;
+  });
+});
+
+burger.addEventListener("click", () => {
+  burgerState = !burgerState;
   revelnav.classList.toggle('burger-style');
   body.classList.toggle('no-scroll');
 
-  for (let i = 0; i < navButtons.length; i++) {
-    navButtons[i].classList.toggle("white-text");
+  navButtons.forEach((button, index) => {
+    button.classList.toggle("white-text", burgerState);
+    listItems[index].classList.toggle("menu-displayed", burgerState);
+  });
+});
 
-    listItems[i].classList.toggle("menu-displayed")
+
+window.addEventListener("resize", () => {
+  const burgerDisplay = getComputedStyle(burger).getPropertyValue("display");
+
+  if (burgerDisplay === "none") {
+    navButtons.forEach((button) => {
+      button.classList.remove("white-text");
+    });
+
+    listItems.forEach((listItem) => {
+      listItem.classList.remove("menu-displayed");
+    });
+
+    revelnav.classList.remove('burger-style');
+    body.classList.remove('no-scroll');
+    burgerState = false;
   }
 });
+
+
+
+
+
 
 
 const callToActionButton = document.querySelector('.call-to-action');

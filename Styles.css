@@ -1,6 +1,8 @@
 html {
     margin: 0;
     padding: 0;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    scroll-behavior: smooth;
 }
 
 header {
@@ -11,7 +13,6 @@ header {
 }
 
 body {
-    font-family: Roboto, Arial, Helvetica, sans-serif;
     margin: 0;
 }
 
@@ -70,7 +71,7 @@ a {
     color: black;
     text-decoration: none;
     font-size: 1.2em;
-    font-weight: 800;
+    font-weight: 600;
 }
 
 h4,
@@ -90,6 +91,7 @@ p {
     height: 90vh;
     position: relative;
     left: 10%;
+    padding-top: 5%;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -108,7 +110,7 @@ p {
 }
 
 #hero-text h3 {
-    font-weight: 600;
+    font-weight: 500;
     margin-bottom: 15%;
 }
 
@@ -128,12 +130,15 @@ p {
 #hero-img {
     position: relative;
     top: 5%;
-    /*height: 59vh;*/
     max-width: 550px;
     grid-column-start: 5;
     grid-column-end: 7;
     grid-row-start: 2;
     grid-row-end: 3;
+}
+
+.small-image {
+    display: none;
 }
 
 /*Second section begins here. The one with the content of the table*/
@@ -178,8 +183,6 @@ p {
 
 #choose:hover {
     cursor: pointer;
-    background-color: #1C2E35;
-    color: white;
 }
 
 #regions {
@@ -347,7 +350,9 @@ tr:nth-child(odd) {
     padding-right: 20%;
     padding-bottom: 3%;
     font-size: 1.1em;
+    font-weight: 500;
 }
+
 
 .about-blocks {
     width: 60%;
@@ -375,10 +380,11 @@ tr:nth-child(odd) {
 .about-blocks ul p {
     max-width: 80%;
     font-size: 1.1em;
+    font-weight: 500;
 }
 
 .about-blocks ul img {
-    max-width: 60px;
+    max-width: 70px;
     margin-right: 5%;
     margin-bottom: 20px;
     grid-column-start: 3;
@@ -518,9 +524,23 @@ footer p {
         margin-top: 10%;
     }
 
+    #hero-img {
+        display: none;
+    }
+
+    .small-image {
+        display: block;
+        position: relative;
+        top: 5%;
+        max-width: 300px;
+        grid-column-start: 5;
+        grid-column-end: 7;
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+
     .about-blocks {
         grid-template-rows: 1fr 3fr;
-        background-color: #baf3e0;
         margin-top: 5%;
         padding-bottom: 5%;
     }
@@ -546,6 +566,7 @@ footer p {
         text-align: center;
         margin: 0;
         padding: 0;
+        padding-bottom: 5%;
     }
 }
 
@@ -602,6 +623,16 @@ footer p {
     /*About section below*/
     #about-text {
         padding: 10%;
+    }
+}
+
+
+@media screen and (max-width: 1034px) and (orientation: landscape) {
+
+    /* Your CSS rules for screens with a width of 1034px or less in landscape mode */
+    /* Adjust layout, font sizes, margins, paddings, etc. */
+    #main-container {
+        margin-top: 60%;
     }
 }
 
