@@ -110,7 +110,7 @@ p {
 }
 
 #hero-text h3 {
-    font-weight: 500;
+    font-weight: 300;
     margin-bottom: 15%;
 }
 
@@ -148,7 +148,7 @@ p {
     position: relative;
     left: 10%;
     margin-top: 10%;
-    margin-bottom: 50px;
+    padding-bottom: 50px;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: 70px auto;
@@ -324,6 +324,8 @@ tr:nth-child(odd) {
 
 #about {
     margin-top: 7%;
+    background-color: #1C2E35;
+    color: white !important;
 }
 
 #about h1 {
@@ -381,6 +383,7 @@ tr:nth-child(odd) {
     max-width: 80%;
     font-size: 1.1em;
     font-weight: 500;
+    color: white;
 }
 
 .about-blocks ul img {
@@ -393,6 +396,7 @@ tr:nth-child(odd) {
 
 footer p {
     text-align: center;
+    margin: 0;
 }
 
 /*MEDIA QUERIES HERE */
@@ -532,7 +536,7 @@ footer p {
         display: block;
         position: relative;
         top: 5%;
-        max-width: 300px;
+        max-width: 275px;
         grid-column-start: 5;
         grid-column-end: 7;
         grid-row-start: 2;
@@ -632,7 +636,7 @@ footer p {
     /* Your CSS rules for screens with a width of 1034px or less in landscape mode */
     /* Adjust layout, font sizes, margins, paddings, etc. */
     #main-container {
-        margin-top: 60%;
+        margin-top: 80%;
     }
 }
 
