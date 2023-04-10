@@ -62,26 +62,16 @@ table.classList.add('table-style')
 
 let regionToShow = ""
 
-function displayFuelType(region, fuelname){
-  clearTable(table)
-  if (window.innerWidth < 650){
-    buttns.style.display = "none";
-  }
-  stationsPerRegion(region, stationsBuild, fuelname)
-  regionToShow = region
-}
 
 const bensinButton = document.getElementById("ben")
 const diselButton = document.getElementById("dis")
 
 bensinButton.addEventListener("click", function () {
-  displayFuelType(currentRegion.textContent, "bensin");
   fuel = "bensin";
   priceH3.textContent = "Bensin verð";
 });
 
 diselButton.addEventListener("click", function () {
-  displayFuelType(currentRegion.textContent, "disel");
   fuel = "disel";
   priceH3.textContent = "Disel verð";
 });
