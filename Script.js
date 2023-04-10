@@ -1,8 +1,4 @@
-const reveal = document.getElementById("choose")
-const buttns = document.getElementById("regions")
-
 /*MENU BUTTONS RESPONSIVE HERE */
-
 const burger = document.querySelector(".hamburger");
 const revelnav = document.querySelector(".navbar-list");
 const listItems = revelnav.querySelectorAll("li");
@@ -49,22 +45,12 @@ window.addEventListener("resize", () => {
   }
 });
 
-
-
-
-
-
-
 const callToActionButton = document.querySelector('.call-to-action');
 const secondSection = document.querySelector('#main-container');
 
 callToActionButton.addEventListener('click', () => {
   secondSection.scrollIntoView({ behavior: 'smooth' });
 });
-
-
-
-
 
 const headerDiv = document.querySelector("#table-header");
 const priceH3 = headerDiv.querySelectorAll("h3")[2];
@@ -85,23 +71,20 @@ function displayFuelType(region, fuelname){
   regionToShow = region
 }
 
-
 const bensinButton = document.getElementById("ben")
 const diselButton = document.getElementById("dis")
 
-bensinButton.addEventListener("click", function(){
-  displayFuelType(regionToShow, 'bensin')
-  fuel = 'bensin'
-  priceH3.textContent = "Bensin verð"
-})
+bensinButton.addEventListener("click", function () {
+  displayFuelType(currentRegion.textContent, "bensin");
+  fuel = "bensin";
+  priceH3.textContent = "Bensin verð";
+});
 
-diselButton.addEventListener("click", function(){
-  displayFuelType(regionToShow, 'disel')
-  fuel = 'disel'
-  priceH3.textContent = "Disel verð"
-})
-
-
+diselButton.addEventListener("click", function () {
+  displayFuelType(currentRegion.textContent, "disel");
+  fuel = "disel";
+  priceH3.textContent = "Disel verð";
+});
 
 let urlTemplate = 'https://gas-prices-iceland.onrender.com/'
 const n1Url = urlTemplate + "n1";
@@ -117,7 +100,6 @@ const stationsBuild = [
   { code: 'n1', url: n1Url, img: 'logos/n1.png', time: 600300 },
   { code: 'atl',url: atloliaUrl, img: 'logos/atlantsolia.png', time: 600500 }  ];
 
-
 function paintAndreset(resetthis, painthis){
   for (let bt = 0; bt < resetthis.length; bt++){
     resetthis[bt].style.backgroundColor = "unset"
@@ -125,25 +107,35 @@ function paintAndreset(resetthis, painthis){
   painthis.style.backgroundColor = "#00425A"
 }
 
-let revealState = false;
+/*new code*/
+const prevButton = document.getElementById("prev");
+const nextButton = document.getElementById("next");
+const currentRegion = document.getElementById("current-region");
+const regionItems = Array.from(document.querySelectorAll(".carousel-item"));
 
-reveal.addEventListener("click", function(){
-  if (revealState == false){
-    /*buttns.style.height = "55%"*/
-    /*buttns.style.position = "absolute";*/
-    buttns.style.display = "flex";
-    buttns.style.justifyContent = "space-around";
-    buttns.style.flexDirection = "column";
-    buttns.style.zIndex = "5"
-    
-    reveal.style.marginBottom = "0"
-    revealState = true
-  }else if(revealState == true){
-    buttns.style.display = "none"
-    revealState = false;
+let currentRegionIndex = 0;
+
+prevButton.addEventListener("click", function () {
+  currentRegionIndex--;
+  if (currentRegionIndex < 0) {
+    currentRegionIndex = regionItems.length - 1;
   }
-})
+  currentRegion.textContent = regionItems[currentRegionIndex].textContent;
+  clearTable(table);
+  stationsPerRegion(currentRegion.textContent, stationsBuild, fuel);
+});
 
+nextButton.addEventListener("click", function () {
+  currentRegionIndex++;
+  if (currentRegionIndex >= regionItems.length) {
+    currentRegionIndex = 0;
+  }
+  currentRegion.textContent = regionItems[currentRegionIndex].textContent;
+  clearTable(table);
+  stationsPerRegion(currentRegion.textContent, stationsBuild, fuel);
+});
+
+/*new code*/
 
 function updatePrices(url) {
   return fetch(url)
@@ -218,7 +210,6 @@ function displayPrices(tableElement, imgurl, link, newrows, area, gas) {
     })
 }
 
-
 function stationsPerRegion(region, stations, oil){
   for (let st = 0; st < stations.length; st++){
     updatePrices(stations[st]['url']);
@@ -229,95 +220,9 @@ function stationsPerRegion(region, stations, oil){
 }
 
 
-let fuel = ''
+stationsPerRegion(currentRegion.textContent, stationsBuild, "bensin");
+fuel = "bensin";
 
-//Buttons to display stations & prices in each region of the country
-const capital = document.getElementById("capital")
-capital.addEventListener("click", function(){ 
-  clearTable(table)
-  if (window.innerWidth < 650){
-    buttns.style.display = "none";
-  }
-  stationsPerRegion("Höfuðborgarsvæðið", stationsBuild, fuel)
-  regionToShow = "Höfuðborgarsvæðið"
-  paintAndreset(buttons, capital)
-})
-
-const south = document.getElementById("south")
-south.addEventListener("click", function(){
-  clearTable(table)
-  if (window.innerWidth < 650){
-    buttns.style.display = "none";
-  }
-  stationsPerRegion("Suðurland", stationsBuild, fuel)
-  regionToShow = "Suðurland"
-  paintAndreset(buttons, south)
-})
-
-const north = document.getElementById("north")
-north.addEventListener("click", function(){
-  clearTable(table)
-  if (window.innerWidth < 650){
-    buttns.style.display = "none";
-  }
-  stationsPerRegion("Norðurland", stationsBuild, fuel)
-  regionToShow = "Norðurland"
-  paintAndreset(buttons, north)
-})
-
-const westfjords = document.getElementById("westfjords")
-westfjords.addEventListener("click", function(){
-  clearTable(table)
-  if (window.innerWidth < 650){
-    buttns.style.display = "none";
-  }
-  stationsPerRegion("Vestfirðir", stationsBuild, fuel)
-  regionToShow = "Vestfirðir"
-  paintAndreset(buttons, westfjords)
-})
-
-const west = document.getElementById("west")
-west.addEventListener("click", function(){
-  clearTable(table)
-  if (window.innerWidth < 650){
-    buttns.style.display = "none";
-  }
-  stationsPerRegion("Vesturland", stationsBuild, fuel)
-  regionToShow = "Vesturland"
-  reveal.innerText = "Vesturland"
-  buttns.style.display = "none";
-  paintAndreset(buttons, west)
-})
-
-const east = document.getElementById("east")
-east.addEventListener("click", function(){
-  clearTable(table)
-  if (window.innerWidth < 650){
-    buttns.style.display = "none";
-  }
-  stationsPerRegion("Austurland", stationsBuild, fuel)
-  regionToShow = "Austurland"
-  paintAndreset(buttons, east)
-})
-
-const southwest = document.getElementById("southwest")
-southwest.addEventListener("click", function(){
-  clearTable(table)
-  if (window.innerWidth < 650){
-    buttns.style.display = "none";
-  }
-  stationsPerRegion("Suðvesturhornið", stationsBuild, fuel)
-  regionToShow = "Suðvesturhornið"
-  southwest
-})
-
-const buttons = [capital, south, southwest, north, east, westfjords, west]
-
-
-//Initial call for content display in page
-stationsPerRegion("Höfuðborgarsvæðið", stationsBuild, 'bensin');
-fuel = 'bensin'
-regionToShow = "Höfuðborgarsvæðið"
 
 
 
