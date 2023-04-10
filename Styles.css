@@ -39,7 +39,7 @@ body {
     grid-column-start: 1;
     grid-column-start: 1;
     grid-column-end: 5;
-    font-size: 1.2em;
+    font-size: 1.1em;
     background-color: #1C2E35;
     color: white;
 }
@@ -237,9 +237,6 @@ p {
     grid-column-start: 1;
 }
 
-#choose:hover {
-    cursor: pointer;
-}
 
 #regions {
     width: 220px;
@@ -392,7 +389,6 @@ tr:nth-child(odd) {
 
 #about h1,
 #about-text {
-    background-color: #1C2E35;
     color: #ffffff;
     margin: 0;
 }
@@ -419,6 +415,8 @@ tr:nth-child(odd) {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
+    margin-bottom: 15px;
+    border-bottom: 1px solid white;
 }
 
 .about-blocks h2 {
@@ -650,6 +648,7 @@ footer p {
     }
 
     .about-blocks ul img {
+        max-width: 50px;
         text-align: center;
         margin: 0;
         padding: 0;
