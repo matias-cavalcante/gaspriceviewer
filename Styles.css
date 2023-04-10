@@ -16,6 +16,39 @@ body {
     margin: 0;
 }
 
+/* Try this*/
+.region-transition {
+    transition: transform 0.3s ease-out;
+}
+
+#carousel-container {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+}
+
+#current-region {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#prev,
+#next {
+    height: 30px;
+    width: 50px;
+    border: 0px;
+    font-size: 1.5em;
+    background-color: #5AE4A7;
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.6);
+}
+
+#prev:hover,
+#next:hover {
+    cursor: pointer;
+}
 
 /*Here begins the code for the new section (NAV BAR CONTENT), the first one when visiting the site*/
 nav {
@@ -190,8 +223,6 @@ p {
 
 #regions {
     width: 220px;
-    /*height: 55%;*/
-    /*top: 100%;*/
     display: none;
     top: 26.5%;
     position: absolute;
@@ -474,6 +505,29 @@ footer p {
     #choose {
         height: 40px;
     }
+
+    #carousel-container {
+        width: 100%;
+    }
+
+    #prev,
+    #next {
+        width: 20%;
+    }
+
+    /*
+    #carousel-container {
+        width: 100%;
+        justify-content: space-between;
+        flex-direction: row;
+    }
+
+    #prev,
+    #next,
+    #current-region {
+        margin-left: 5px;
+        margin-right: 5px;
+    }*/
 
     #fuel-type {
         justify-content: space-between;

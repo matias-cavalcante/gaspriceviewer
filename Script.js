@@ -120,9 +120,18 @@ prevButton.addEventListener("click", function () {
   if (currentRegionIndex < 0) {
     currentRegionIndex = regionItems.length - 1;
   }
-  currentRegion.textContent = regionItems[currentRegionIndex].textContent;
-  clearTable(table);
-  stationsPerRegion(currentRegion.textContent, stationsBuild, fuel);
+
+  currentRegion.style.transform = "translateX(20%)";
+  setTimeout(() => {
+    currentRegion.textContent = regionItems[currentRegionIndex].textContent;
+    currentRegion.style.transform = "translateX(-20%)";
+  }, 100);
+
+  setTimeout(() => {
+    currentRegion.style.transform = "translateX(0)";
+    clearTable(table);
+    stationsPerRegion(currentRegion.textContent, stationsBuild, fuel);
+  }, 200);
 });
 
 nextButton.addEventListener("click", function () {
@@ -130,10 +139,21 @@ nextButton.addEventListener("click", function () {
   if (currentRegionIndex >= regionItems.length) {
     currentRegionIndex = 0;
   }
-  currentRegion.textContent = regionItems[currentRegionIndex].textContent;
-  clearTable(table);
-  stationsPerRegion(currentRegion.textContent, stationsBuild, fuel);
+
+  currentRegion.style.transform = "translateX(-20%)";
+  setTimeout(() => {
+    currentRegion.textContent = regionItems[currentRegionIndex].textContent;
+    currentRegion.style.transform = "translateX(20%)";
+  }, 100);
+
+  setTimeout(() => {
+    currentRegion.style.transform = "translateX(0)";
+    clearTable(table);
+    stationsPerRegion(currentRegion.textContent, stationsBuild, fuel);
+  }, 200);
 });
+
+
 
 /*new code*/
 
@@ -209,6 +229,7 @@ function displayPrices(tableElement, imgurl, link, newrows, area, gas) {
       divTableContainer.appendChild(tableElement);
     })
 }
+
 
 function stationsPerRegion(region, stations, oil){
   for (let st = 0; st < stations.length; st++){
