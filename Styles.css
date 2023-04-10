@@ -22,17 +22,24 @@ body {
 }
 
 #carousel-container {
-    display: flex;
-    align-items: start;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr)
 }
 
 #current-region {
+    height: 30px;
     display: flex;
     align-items: center;
-    height: 30px;
     margin-top: 5px;
     margin-bottom: 5px;
+    grid-column-start: 1;
+
+}
+
+#prev,
+#next {
+    grid-column-start: 1;
 }
 
 #prev,
@@ -506,13 +513,26 @@ footer p {
         height: 40px;
     }
 
-    #carousel-container {
-        width: 100%;
+
+    #current-region {
+        grid-row: 1;
+        grid-column-start: 2;
+        grid-column-end: 4;
     }
 
-    #prev,
     #next {
-        width: 20%;
+        width: 90%;
+        grid-row: 2;
+        grid-column-start: 3;
+        grid-column-end: 5;
+        margin-left: 10%;
+    }
+
+    #prev {
+        width: 90%;
+        grid-row: 2;
+        grid-column-start: 1;
+        grid-column-end: 3;
     }
 
     /*
