@@ -67,13 +67,16 @@ const bensinButton = document.getElementById("ben")
 const diselButton = document.getElementById("dis")
 
 bensinButton.addEventListener("click", function () {
-  fuel = "bensin";
   priceH3.textContent = "Bensin verð";
+  clearTable(table)
+  stationsPerRegion(currentRegion.textContent, stationsBuild, "bensin");
 });
 
 diselButton.addEventListener("click", function () {
   fuel = "disel";
   priceH3.textContent = "Disel verð";
+  clearTable(table)
+  stationsPerRegion(currentRegion.textContent, stationsBuild, "disel");
 });
 
 let urlTemplate = 'https://gas-prices-iceland.onrender.com/'
@@ -229,7 +232,6 @@ function stationsPerRegion(region, stations, oil){
     stations[st]['time'])
   }
 }
-
 
 stationsPerRegion(currentRegion.textContent, stationsBuild, "bensin");
 fuel = "bensin";
