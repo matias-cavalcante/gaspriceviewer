@@ -67,6 +67,7 @@ const bensinButton = document.getElementById("ben")
 const diselButton = document.getElementById("dis")
 
 bensinButton.addEventListener("click", function () {
+  fuel = "bensin"
   priceH3.textContent = "Bensin verð";
   clearTable(table)
   stationsPerRegion(currentRegion.textContent, stationsBuild, "bensin");
