@@ -150,6 +150,80 @@ nextButton.addEventListener("click", function () {
 
 /*new code*/
 
+
+/* THIS IS JUST A TEST TEST TEST*/
+let completedRequests = 0;
+function incrementCompletedRequests(totalRequests) {
+  const spinnerContainer = document.querySelector('.spinner-container');
+  const tableContainer = document.querySelector('#table-container');
+  const tableHeader = document.querySelector('#table-header');
+
+  // Show the spinner container and hide the table container when the first request is completed
+  if (completedRequests === 0) {
+    spinnerContainer.style.display = 'flex';
+    tableHeader.style.display = 'none';
+    tableContainer.style.display = 'none';
+  }
+
+  completedRequests++;
+
+  if (completedRequests === totalRequests) {
+    // Hide the spinner container and show the table container when all requests are completed
+    spinnerContainer.style.display = 'none';
+    tableHeader.style.display = "flex"
+    tableContainer.style.display = 'block';
+  }
+}
+
+
+
+
+
+
+function displayPrices(tableElement, imgurl, link, newrows, area, gas, totalRequests) {
+  updatePrices(link)
+    .then(data => {
+      const filteredStations = Object.keys(data)
+        .filter(station => data[station].region === area);
+      const rows = Array.from(tableElement.querySelectorAll('tr'));
+      const moreRows = newrows(filteredStations, imgurl, data, gas);
+      rows.sort((a, b) => parseFloat(a.lastElementChild.textContent) - parseFloat(b.lastElementChild.textContent));
+      let mergedRows = [...rows, ...moreRows].sort((a, b) => parseFloat(a.lastElementChild.textContent) - parseFloat(b.lastElementChild.textContent));
+
+      mergedRows.forEach(row => tableElement.appendChild(row));
+      divTableContainer.appendChild(tableElement);
+
+      // Call incrementCompletedRequests() after updating the table and pass totalRequests
+      incrementCompletedRequests(totalRequests);
+    })
+}
+
+
+function stationsPerRegion(region, stations, oil){
+  const spinnerContainer = document.querySelector('.spinner');
+  const container = document.querySelector('#table-container');
+  const tableHeader = document.querySelector('#table-header');
+
+
+  completedRequests = 0; // 
+  spinnerContainer.style.display = 'block';
+  tableHeader.style.display = 'none';
+  container.style.display = 'none'; 
+
+  for (let st = 0; st < stations.length; st++){
+    setInterval(() => updatePrices(stations[st]['url']), stations[st]['time']);
+    setInterval(displayPrices(table, stations[st]['img'], stations[st]['url'], newRows, region, oil, stations.length),
+    stations[st]['time'])
+  }
+}
+
+
+
+
+
+
+/* THIS IS JUST A TEST TEST TEST*/
+
 function updatePrices(url) {
   return fetch(url)
     .then(response => response.json())
@@ -205,32 +279,6 @@ function newRows(filtered, imglink, gasprice, type) {
 function clearTable(tableElement) {
   const rows = Array.from(tableElement.querySelectorAll('tr'));
   rows.forEach(row => row.remove());
-}
-
-function displayPrices(tableElement, imgurl, link, newrows, area, gas) {
-  updatePrices(link)
-    .then(data => {
-      const filteredStations = Object.keys(data)
-        .filter(station => data[station].region === area);
-      // Get rows in the table + make more rows from API all & sort them
-      const rows = Array.from(tableElement.querySelectorAll('tr'));
-      const moreRows = newrows(filteredStations, imgurl, data, gas);
-      rows.sort((a, b) => parseFloat(a.lastElementChild.textContent) - parseFloat(b.lastElementChild.textContent));
-      let mergedRows = [...rows, ...moreRows].sort((a, b) => parseFloat(a.lastElementChild.textContent) - parseFloat(b.lastElementChild.textContent));
-
-      mergedRows.forEach(row => tableElement.appendChild(row));
-      divTableContainer.appendChild(tableElement);
-    })
-}
-
-
-function stationsPerRegion(region, stations, oil){
-  for (let st = 0; st < stations.length; st++){
-    updatePrices(stations[st]['url']);
-    setInterval(() => updatePrices(stations[st]['url']), stations[st]['time']);
-    setInterval(displayPrices(table, stations[st]['img'], stations[st]['url'], newRows, region, oil),
-    stations[st]['time'])
-  }
 }
 
 stationsPerRegion(currentRegion.textContent, stationsBuild, "bensin");

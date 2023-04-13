@@ -16,6 +16,43 @@ body {
     margin: 0;
 }
 
+/*SPINNER TEST*/
+
+.spinner-container {
+    width: 600px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.spinner {
+    /* Add your spinner styles here */
+    display: none;
+    border: 9px solid #5AE4A7;
+    border-left-color: #1C2E35;
+    border-radius: 50%;
+    width: 125px;
+    height: 125px;
+    animation: spin 1s linear infinite;
+}
+
+.spinner-container h2 {
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/*SPINNER TEST*/
+
 /* Try this*/
 .region-transition {
     transition: transform 0.3s ease-out;
@@ -289,6 +326,8 @@ p {
 }
 
 #table-block {
+    /*Careful here with position*/
+    position: relative;
     grid-row-start: 2;
     grid-column-start: 8;
 }
@@ -546,6 +585,15 @@ footer p {
         max-width: 100%;
     }
 
+    /*Keeping table container and spinner container same width*/
+
+    .spinner-container {
+        height: 400px;
+        max-width: 100%;
+    }
+
+
+
     /*About section*/
 
     .about-blocks {
@@ -670,7 +718,6 @@ footer p {
         padding-left: 2.5%;
         padding-right: 2.5%;
     }
-
 
     .table-cell-style {
         width: 80%;
