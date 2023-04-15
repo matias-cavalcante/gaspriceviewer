@@ -3,10 +3,12 @@ const burger = document.querySelector(".hamburger");
 const revelnav = document.querySelector(".navbar-list");
 const listItems = revelnav.querySelectorAll("li");
 const navButtons = document.querySelectorAll(".nav-button");
+
 const body = document.querySelector("body");
 
 let burgerState = false;
 
+/*Vertical menu display for mobile version*/
 navButtons.forEach((button) => {
   button.addEventListener('click', () => {
     revelnav.classList.remove('burger-style');
@@ -15,6 +17,7 @@ navButtons.forEach((button) => {
   });
 });
 
+/*Burguer button's behavior for mobile and tablets*/
 burger.addEventListener("click", () => {
   burgerState = !burgerState;
   revelnav.classList.toggle('burger-style');
@@ -26,7 +29,7 @@ burger.addEventListener("click", () => {
   });
 });
 
-
+/*Hide and show navbar depending on the screen size*/
 window.addEventListener("resize", () => {
   const burgerDisplay = getComputedStyle(burger).getPropertyValue("display");
 
@@ -191,7 +194,16 @@ function displayPrices(tableElement, imgurl, link, newrows, area, gas, totalRequ
       rows.sort((a, b) => parseFloat(a.lastElementChild.textContent) - parseFloat(b.lastElementChild.textContent));
       let mergedRows = [...rows, ...moreRows].sort((a, b) => parseFloat(a.lastElementChild.textContent) - parseFloat(b.lastElementChild.textContent));
 
-      mergedRows.forEach(row => tableElement.appendChild(row));
+      mergedRows.forEach(row => {
+        if (row instanceof Node) {
+          tableElement.appendChild(row);
+        } else {
+          console.error("Invalid element:", row);
+        }
+      });
+      
+
+
       divTableContainer.appendChild(tableElement);
 
       // Call incrementCompletedRequests() after updating the table and pass totalRequests
@@ -266,16 +278,22 @@ function fillRow(imageurl, name, price, row){
   row.appendChild(pricecell);
 }
 
-
 function newRows(filtered, imglink, gasprice, type) {
-  return filtered.map(station => {
+  return filtered.reduce((acc, station) => {
     let stationUpperFirst = station[0].toUpperCase() + station.slice(1);
     const pricesRow = document.createElement('tr');
-    fillRow(imglink, stationUpperFirst, gasprice[station][type], pricesRow);
-    pricesRow.classList.add('table-row-style');
-    return pricesRow;
-  }).sort((a, b) => parseFloat(a.lastElementChild.textContent) - parseFloat(b.lastElementChild.textContent));
+
+    if (gasprice[station][type] != 0) {
+      fillRow(imglink, stationUpperFirst, gasprice[station][type], pricesRow);
+      pricesRow.classList.add('table-row-style');
+      acc.push(pricesRow); // Add the row to the accumulator array
+    }
+
+    return acc;
+  }, []).sort((a, b) => parseFloat(a.lastElementChild.textContent) - parseFloat(b.lastElementChild.textContent));
 }
+
+
 
 function clearTable(tableElement) {
   const rows = Array.from(tableElement.querySelectorAll('tr'));

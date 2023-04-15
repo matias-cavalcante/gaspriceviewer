@@ -29,7 +29,7 @@ body {
 
 
 .spinner {
-    /* Add your spinner styles here */
+
     display: none;
     border: 9px solid #5AE4A7;
     border-left-color: #1C2E35;
@@ -50,6 +50,7 @@ body {
         transform: rotate(360deg);
     }
 }
+
 
 /*SPINNER TEST*/
 
