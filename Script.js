@@ -1,136 +1,66 @@
-/*
-//WEBPAGE REGIONS
-const body = document.querySelector("body");
-const secondSection = document.querySelector('#main-container');
-
-//NAVBAR ELEMENTS
-const burger = document.querySelector(".hamburger");
-const revelnav = document.querySelector(".navbar-list");
-
-//import revelnav
-const listItems = revelnav.querySelectorAll("li");
-const navButtons = document.querySelectorAll(".nav-button");
-
-const callToActionButton = document.querySelector('.call-to-action');
-
-//CHANGE FUEL TYPE DISPLAYED WITH THESE BUTTONS
-const bensinButton = document.getElementById("ben")
-const diselButton = document.getElementById("dis")
-
-//TABLE (IN MIDDLE SECTION) COMPONENTS
-const headerDiv = document.querySelector("#table-header");
-const priceH3 = headerDiv.querySelectorAll("h3")[2];
-const divTableContainer = document.getElementById("table-container");
-const table = document.createElement("table");
-
-//CAROUSEL BUTTONS SWITCH COMPONENTS
-const prevButton = document.getElementById("prev");
-const nextButton = document.getElementById("next");
-const currentRegion = document.getElementById("current-region");
-const regionItems = Array.from(document.querySelectorAll(".carousel-item"));
-
-//FORMAT OF DATA REQUIRED FOR EACH GAS STATION
-const stationsBuild = [
-  { code: 'ob', url: 'https://gas-prices-iceland.onrender.com/ob', img: 'logos/ob.png', time: 600000 },
-  { code: 'olis',url: 'https://gas-prices-iceland.onrender.com/olis', img: 'logos/olis.png', time: 600150 },
-  { code: 'orkan', url: 'https://gas-prices-iceland.onrender.com/orkan', img: 'logos/orkan.png', time: 600200 },
-  { code: 'n1', url:'https://gas-prices-iceland.onrender.com/n1' , img: 'logos/n1.png', time: 600300 },
-  { code: 'atl',url: 'https://gas-prices-iceland.onrender.com/atlanso', img: 'logos/atlantsolia.png', time: 600500 }];
-*/
-
 import * as constants from './Components.js';
 
+//NAVBAR AND BURGER MENU STARTS HERE
+ let burgerState = false;
 
-let burgerState = false;
-//IMPORTED
 constants.navButtons.forEach((button) => {
   button.addEventListener('click', () => {
-    //IMPORTED
     constants.revelnav.classList.remove('burger-style');
-    //CAREFULL
     constants.body.classList.remove('no-scroll');
     burgerState = false;
   });
 });
-//IMPORTED
+
 constants.burger.addEventListener("click", () => {
   burgerState = !burgerState;
-  //IMPORTED
   constants.revelnav.classList.toggle('burger-style');
-  //CAREFULL
   constants.body.classList.toggle('no-scroll');
-  //IMPORTED
   constants.navButtons.forEach((button, index) => {
     button.classList.toggle("white-text", burgerState);
-    //IMPORTED
     constants.listItems[index].classList.toggle("menu-displayed", burgerState);
   });
 });
 
-
 window.addEventListener("resize", () => {
-  //IMPORTED
   const burgerDisplay = getComputedStyle(constants.burger).getPropertyValue("display");
 
   if (burgerDisplay === "none") {
-    //IMPORTED
     constants.navButtons.forEach((button) => {
       button.classList.remove("white-text");
     });
-    //IMPORTED
     constants.listItems.forEach((listItem) => {
       listItem.classList.remove("menu-displayed");
     });
-    //IMPORTED
     constants.revelnav.classList.remove('burger-style');
-    //CAREFULL
     constants.body.classList.remove('no-scroll');
     burgerState = false;
   }
 });
+//NAVBAR AND BURGER MENU END HERE APPARENTLY
 
 
-
-//IMPORTED
 constants.callToActionButton.addEventListener('click', () => {
-  //IMPORTED
   constants.secondSection.scrollIntoView({ behavior: 'smooth' });
 });
 
-//IMPORTED
-constants.table.classList.add('table-style')
 
-let regionToShow = ""
-//IMPORTED
 constants.bensinButton.addEventListener("click", function () {
   fuel = "bensin"
-  //IMPORTED
   constants.priceH3.textContent = "Bensin verð";
   clearTable(constants.table)
   stationsPerRegion(constants.currentRegion.textContent, constants.stationsBuild, "bensin");
 });
-//IMPORTED
 constants.diselButton.addEventListener("click", function () {
   fuel = "disel";
-  //IMPORTED
   constants.priceH3.textContent = "Disel verð";
   clearTable(constants.table)
   stationsPerRegion(constants.currentRegion.textContent, constants.stationsBuild, "disel");
 });
-
-function paintAndreset(resetthis, painthis){
-  for (let bt = 0; bt < resetthis.length; bt++){
-    resetthis[bt].style.backgroundColor = "unset"
-  }
-  painthis.style.backgroundColor = "#00425A"
-}
-
-
-
+/*
 let currentRegionIndex = 0;
-//import
 constants.prevButton.addEventListener("click", function () {
-  constants.currentRegionIndex--;
+
+  currentRegionIndex--;
   if (currentRegionIndex < 0) {
     currentRegionIndex = constants.regionItems.length - 1;
   }
@@ -143,7 +73,6 @@ constants.prevButton.addEventListener("click", function () {
 
   setTimeout(() => {
     constants.currentRegion.style.transform = "translateX(0)";
-    //imported
     clearTable(constants.table);
     stationsPerRegion(constants.currentRegion.textContent, constants.stationsBuild, fuel);
   }, 200);
@@ -163,10 +92,49 @@ constants.nextButton.addEventListener("click", function () {
 
   setTimeout(() => {
     constants.currentRegion.style.transform = "translateX(0)";
-    clearTable(constants.table);//imported
+    clearTable(constants.table);
     stationsPerRegion(constants.currentRegion.textContent, constants.stationsBuild, fuel);
   }, 200);
+});*/
+
+let currentRegionIndex = 0;
+
+function changeRegionIndex(increment) {
+  currentRegionIndex += increment;
+  if (currentRegionIndex < 0) {
+    currentRegionIndex = constants.regionItems.length - 1;
+  } else if (currentRegionIndex >= constants.regionItems.length) {
+    currentRegionIndex = 0;
+  }
+}
+
+function updateRegion(translateValue1, translateValue2) {
+  constants.currentRegion.style.transform = translateValue1;
+  setTimeout(() => {
+    constants.currentRegion.textContent = constants.regionItems[currentRegionIndex].textContent;
+    constants.currentRegion.style.transform = translateValue2;
+  }, 100);
+
+  setTimeout(() => {
+    constants.currentRegion.style.transform = "translateX(0)";
+    clearTable(constants.table);
+    stationsPerRegion(constants.currentRegion.textContent, constants.stationsBuild, fuel);
+  }, 200);
+}
+
+constants.prevButton.addEventListener("click", () => {
+  changeRegionIndex(-1);
+  updateRegion("translateX(20%)", "translateX(-20%)");
 });
+
+constants.nextButton.addEventListener("click", () => {
+  changeRegionIndex(1);
+  updateRegion("translateX(-20%)", "translateX(20%)");
+});
+
+
+constants.table.classList.add('table-style')
+
 
 let completedRequests = 0;
 
@@ -209,14 +177,10 @@ function displayPrices(tableElement, imgurl, link, newrows, area, gas, totalRequ
           console.error("Invalid element:", row);
         }
       });
-      //IMPORTED
       constants.divTableContainer.appendChild(tableElement);
-
-      // Call incrementCompletedRequests() after updating the table and pass totalRequests
       incrementCompletedRequests(totalRequests);
     })
 }
-
 
 function stationsPerRegion(region, stations, oil){
   const spinnerContainer = document.querySelector('.spinner');
