@@ -1,4 +1,5 @@
 import * as constants from './Components.js';
+import { fillRow } from './rowFiller.js';
 
 //NAVBAR AND BURGER MENU STARTS HERE
  let burgerState = false;
@@ -56,46 +57,7 @@ constants.diselButton.addEventListener("click", function () {
   clearTable(constants.table)
   stationsPerRegion(constants.currentRegion.textContent, constants.stationsBuild, "disel");
 });
-/*
-let currentRegionIndex = 0;
-constants.prevButton.addEventListener("click", function () {
 
-  currentRegionIndex--;
-  if (currentRegionIndex < 0) {
-    currentRegionIndex = constants.regionItems.length - 1;
-  }
-
-  constants.currentRegion.style.transform = "translateX(20%)";
-  setTimeout(() => {
-    constants.currentRegion.textContent = constants.regionItems[currentRegionIndex].textContent;
-    constants.currentRegion.style.transform = "translateX(-20%)";
-  }, 100);
-
-  setTimeout(() => {
-    constants.currentRegion.style.transform = "translateX(0)";
-    clearTable(constants.table);
-    stationsPerRegion(constants.currentRegion.textContent, constants.stationsBuild, fuel);
-  }, 200);
-});
-
-constants.nextButton.addEventListener("click", function () {
-  currentRegionIndex++;
-  if (currentRegionIndex >= constants.regionItems.length) {
-    currentRegionIndex = 0;
-  }
-
-  constants.currentRegion.style.transform = "translateX(-20%)";
-  setTimeout(() => {
-    constants.currentRegion.textContent = constants.regionItems[currentRegionIndex].textContent;
-    constants.currentRegion.style.transform = "translateX(20%)";
-  }, 100);
-
-  setTimeout(() => {
-    constants.currentRegion.style.transform = "translateX(0)";
-    clearTable(constants.table);
-    stationsPerRegion(constants.currentRegion.textContent, constants.stationsBuild, fuel);
-  }, 200);
-});*/
 
 let currentRegionIndex = 0;
 
@@ -206,49 +168,6 @@ function updatePrices(url) {
     });
 }
 
-//They all go inside fillrow
-
-function logoContentAndCell(url){
-  const logo = document.createElement("img");
-  logo.src = url;
-  logo.classList.add("logo-style")
-
-  const logoBox = document.createElement("th");   
-  logoBox.appendChild(logo)
-  return logoBox
-}
-
-function priceContentAndCell(value){
-  const priceBox = document.createElement("th");
-  priceBox.style.fontSize = "1.3em"
-  priceBox.style.color = "#1C2E35";
-  priceBox.appendChild(document.createTextNode(value))
-  return priceBox
-}
-
-function nameContentAndCell(namevalue){
-  const nameCell = document.createElement("th");
-  nameCell.classList.add("table-cell-style")
-  if (namevalue.length >= 15 && (namevalue.includes(',') || namevalue.includes(' '))) {
-    const parts = namevalue.split(/,| /, 2);
-    nameCell.appendChild(document.createTextNode(parts[0] + " "))
-    nameCell.appendChild(document.createTextNode(parts[1]))
-  }else{
-    nameCell.appendChild(document.createTextNode(namevalue))
-  }
-  return nameCell
-}
-
-function fillRow(imageurl, name, price, row){
-  let logoCell = logoContentAndCell(imageurl)
-  const theNameCell = nameContentAndCell(name)
-  const pricecell = priceContentAndCell(price)
-  row.appendChild(logoCell);
-  row.appendChild(theNameCell);
-  row.appendChild(pricecell);
-}
-
-//It finished here
 
 function newRows(filtered, imglink, gasprice, type) {
   return filtered.reduce((acc, station) => {
