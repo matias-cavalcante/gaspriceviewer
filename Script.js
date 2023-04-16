@@ -305,7 +305,7 @@ function clearTable(tableElement) {
 }
 
 stationsPerRegion(constants.currentRegion.textContent, constants.stationsBuild, "bensin");
-fuel = "bensin";
+let fuel = "bensin";
 
 
 
