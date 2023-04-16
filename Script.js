@@ -1,101 +1,122 @@
-/*MENU BUTTONS RESPONSIVE HERE */
+/*
+//WEBPAGE REGIONS
+const body = document.querySelector("body");
+const secondSection = document.querySelector('#main-container');
+
+//NAVBAR ELEMENTS
 const burger = document.querySelector(".hamburger");
 const revelnav = document.querySelector(".navbar-list");
+
+//import revelnav
 const listItems = revelnav.querySelectorAll("li");
 const navButtons = document.querySelectorAll(".nav-button");
 
-const body = document.querySelector("body");
+const callToActionButton = document.querySelector('.call-to-action');
+
+//CHANGE FUEL TYPE DISPLAYED WITH THESE BUTTONS
+const bensinButton = document.getElementById("ben")
+const diselButton = document.getElementById("dis")
+
+//TABLE (IN MIDDLE SECTION) COMPONENTS
+const headerDiv = document.querySelector("#table-header");
+const priceH3 = headerDiv.querySelectorAll("h3")[2];
+const divTableContainer = document.getElementById("table-container");
+const table = document.createElement("table");
+
+//CAROUSEL BUTTONS SWITCH COMPONENTS
+const prevButton = document.getElementById("prev");
+const nextButton = document.getElementById("next");
+const currentRegion = document.getElementById("current-region");
+const regionItems = Array.from(document.querySelectorAll(".carousel-item"));
+
+//FORMAT OF DATA REQUIRED FOR EACH GAS STATION
+const stationsBuild = [
+  { code: 'ob', url: 'https://gas-prices-iceland.onrender.com/ob', img: 'logos/ob.png', time: 600000 },
+  { code: 'olis',url: 'https://gas-prices-iceland.onrender.com/olis', img: 'logos/olis.png', time: 600150 },
+  { code: 'orkan', url: 'https://gas-prices-iceland.onrender.com/orkan', img: 'logos/orkan.png', time: 600200 },
+  { code: 'n1', url:'https://gas-prices-iceland.onrender.com/n1' , img: 'logos/n1.png', time: 600300 },
+  { code: 'atl',url: 'https://gas-prices-iceland.onrender.com/atlanso', img: 'logos/atlantsolia.png', time: 600500 }];
+*/
+
+import * as constants from './Components.js';
+
 
 let burgerState = false;
-
-/*Vertical menu display for mobile version*/
-navButtons.forEach((button) => {
+//IMPORTED
+constants.navButtons.forEach((button) => {
   button.addEventListener('click', () => {
-    revelnav.classList.remove('burger-style');
-    body.classList.remove('no-scroll');
+    //IMPORTED
+    constants.revelnav.classList.remove('burger-style');
+    //CAREFULL
+    constants.body.classList.remove('no-scroll');
     burgerState = false;
   });
 });
-
-/*Burguer button's behavior for mobile and tablets*/
-burger.addEventListener("click", () => {
+//IMPORTED
+constants.burger.addEventListener("click", () => {
   burgerState = !burgerState;
-  revelnav.classList.toggle('burger-style');
-  body.classList.toggle('no-scroll');
-
-  navButtons.forEach((button, index) => {
+  //IMPORTED
+  constants.revelnav.classList.toggle('burger-style');
+  //CAREFULL
+  constants.body.classList.toggle('no-scroll');
+  //IMPORTED
+  constants.navButtons.forEach((button, index) => {
     button.classList.toggle("white-text", burgerState);
-    listItems[index].classList.toggle("menu-displayed", burgerState);
+    //IMPORTED
+    constants.listItems[index].classList.toggle("menu-displayed", burgerState);
   });
 });
 
-/*Hide and show navbar depending on the screen size*/
+
 window.addEventListener("resize", () => {
-  const burgerDisplay = getComputedStyle(burger).getPropertyValue("display");
+  //IMPORTED
+  const burgerDisplay = getComputedStyle(constants.burger).getPropertyValue("display");
 
   if (burgerDisplay === "none") {
-    navButtons.forEach((button) => {
+    //IMPORTED
+    constants.navButtons.forEach((button) => {
       button.classList.remove("white-text");
     });
-
-    listItems.forEach((listItem) => {
+    //IMPORTED
+    constants.listItems.forEach((listItem) => {
       listItem.classList.remove("menu-displayed");
     });
-
-    revelnav.classList.remove('burger-style');
-    body.classList.remove('no-scroll');
+    //IMPORTED
+    constants.revelnav.classList.remove('burger-style');
+    //CAREFULL
+    constants.body.classList.remove('no-scroll');
     burgerState = false;
   }
 });
 
-const callToActionButton = document.querySelector('.call-to-action');
-const secondSection = document.querySelector('#main-container');
 
-callToActionButton.addEventListener('click', () => {
-  secondSection.scrollIntoView({ behavior: 'smooth' });
+
+//IMPORTED
+constants.callToActionButton.addEventListener('click', () => {
+  //IMPORTED
+  constants.secondSection.scrollIntoView({ behavior: 'smooth' });
 });
 
-const headerDiv = document.querySelector("#table-header");
-const priceH3 = headerDiv.querySelectorAll("h3")[2];
-
-
-const divTableContainer = document.getElementById("table-container");
-const table = document.createElement("table");
-table.classList.add('table-style')
+//IMPORTED
+constants.table.classList.add('table-style')
 
 let regionToShow = ""
-
-
-const bensinButton = document.getElementById("ben")
-const diselButton = document.getElementById("dis")
-
-bensinButton.addEventListener("click", function () {
+//IMPORTED
+constants.bensinButton.addEventListener("click", function () {
   fuel = "bensin"
-  priceH3.textContent = "Bensin verð";
-  clearTable(table)
-  stationsPerRegion(currentRegion.textContent, stationsBuild, "bensin");
+  //IMPORTED
+  constants.priceH3.textContent = "Bensin verð";
+  clearTable(constants.table)
+  stationsPerRegion(constants.currentRegion.textContent, constants.stationsBuild, "bensin");
 });
-
-diselButton.addEventListener("click", function () {
+//IMPORTED
+constants.diselButton.addEventListener("click", function () {
   fuel = "disel";
-  priceH3.textContent = "Disel verð";
-  clearTable(table)
-  stationsPerRegion(currentRegion.textContent, stationsBuild, "disel");
+  //IMPORTED
+  constants.priceH3.textContent = "Disel verð";
+  clearTable(constants.table)
+  stationsPerRegion(constants.currentRegion.textContent, constants.stationsBuild, "disel");
 });
-
-let urlTemplate = 'https://gas-prices-iceland.onrender.com/'
-const n1Url = urlTemplate + "n1";
-const olisUrl = urlTemplate + "olis";
-const atloliaUrl = urlTemplate + "atlanso";
-const obUrl = urlTemplate + "ob";
-const orkanUrl = urlTemplate + "orkan";
-
-const stationsBuild = [
-  { code: 'ob', url: obUrl, img: 'logos/ob.png', time: 600000 },
-  { code: 'olis',url: olisUrl, img: 'logos/olis.png', time: 600150 },
-  { code: 'orkan', url: orkanUrl, img: 'logos/orkan.png', time: 600200 },
-  { code: 'n1', url: n1Url, img: 'logos/n1.png', time: 600300 },
-  { code: 'atl',url: atloliaUrl, img: 'logos/atlantsolia.png', time: 600500 }  ];
 
 function paintAndreset(resetthis, painthis){
   for (let bt = 0; bt < resetthis.length; bt++){
@@ -104,59 +125,51 @@ function paintAndreset(resetthis, painthis){
   painthis.style.backgroundColor = "#00425A"
 }
 
-/*new code*/
-const prevButton = document.getElementById("prev");
-const nextButton = document.getElementById("next");
-const currentRegion = document.getElementById("current-region");
-const regionItems = Array.from(document.querySelectorAll(".carousel-item"));
+
 
 let currentRegionIndex = 0;
-
-prevButton.addEventListener("click", function () {
-  currentRegionIndex--;
+//import
+constants.prevButton.addEventListener("click", function () {
+  constants.currentRegionIndex--;
   if (currentRegionIndex < 0) {
-    currentRegionIndex = regionItems.length - 1;
+    currentRegionIndex = constants.regionItems.length - 1;
   }
 
-  currentRegion.style.transform = "translateX(20%)";
+  constants.currentRegion.style.transform = "translateX(20%)";
   setTimeout(() => {
-    currentRegion.textContent = regionItems[currentRegionIndex].textContent;
-    currentRegion.style.transform = "translateX(-20%)";
+    constants.currentRegion.textContent = constants.regionItems[currentRegionIndex].textContent;
+    constants.currentRegion.style.transform = "translateX(-20%)";
   }, 100);
 
   setTimeout(() => {
-    currentRegion.style.transform = "translateX(0)";
-    clearTable(table);
-    stationsPerRegion(currentRegion.textContent, stationsBuild, fuel);
+    constants.currentRegion.style.transform = "translateX(0)";
+    //imported
+    clearTable(constants.table);
+    stationsPerRegion(constants.currentRegion.textContent, constants.stationsBuild, fuel);
   }, 200);
 });
 
-nextButton.addEventListener("click", function () {
+constants.nextButton.addEventListener("click", function () {
   currentRegionIndex++;
-  if (currentRegionIndex >= regionItems.length) {
+  if (currentRegionIndex >= constants.regionItems.length) {
     currentRegionIndex = 0;
   }
 
-  currentRegion.style.transform = "translateX(-20%)";
+  constants.currentRegion.style.transform = "translateX(-20%)";
   setTimeout(() => {
-    currentRegion.textContent = regionItems[currentRegionIndex].textContent;
-    currentRegion.style.transform = "translateX(20%)";
+    constants.currentRegion.textContent = constants.regionItems[currentRegionIndex].textContent;
+    constants.currentRegion.style.transform = "translateX(20%)";
   }, 100);
 
   setTimeout(() => {
-    currentRegion.style.transform = "translateX(0)";
-    clearTable(table);
-    stationsPerRegion(currentRegion.textContent, stationsBuild, fuel);
+    constants.currentRegion.style.transform = "translateX(0)";
+    clearTable(constants.table);//imported
+    stationsPerRegion(constants.currentRegion.textContent, constants.stationsBuild, fuel);
   }, 200);
 });
 
-
-
-/*new code*/
-
-
-/* THIS IS JUST A TEST TEST TEST*/
 let completedRequests = 0;
+
 function incrementCompletedRequests(totalRequests) {
   const spinnerContainer = document.querySelector('.spinner-container');
   const tableContainer = document.querySelector('#table-container');
@@ -179,11 +192,6 @@ function incrementCompletedRequests(totalRequests) {
   }
 }
 
-
-
-
-
-
 function displayPrices(tableElement, imgurl, link, newrows, area, gas, totalRequests) {
   updatePrices(link)
     .then(data => {
@@ -201,10 +209,8 @@ function displayPrices(tableElement, imgurl, link, newrows, area, gas, totalRequ
           console.error("Invalid element:", row);
         }
       });
-      
-
-
-      divTableContainer.appendChild(tableElement);
+      //IMPORTED
+      constants.divTableContainer.appendChild(tableElement);
 
       // Call incrementCompletedRequests() after updating the table and pass totalRequests
       incrementCompletedRequests(totalRequests);
@@ -216,8 +222,6 @@ function stationsPerRegion(region, stations, oil){
   const spinnerContainer = document.querySelector('.spinner');
   const container = document.querySelector('#table-container');
   const tableHeader = document.querySelector('#table-header');
-
-
   completedRequests = 0; // 
   spinnerContainer.style.display = 'block';
   tableHeader.style.display = 'none';
@@ -225,17 +229,10 @@ function stationsPerRegion(region, stations, oil){
 
   for (let st = 0; st < stations.length; st++){
     setInterval(() => updatePrices(stations[st]['url']), stations[st]['time']);
-    setInterval(displayPrices(table, stations[st]['img'], stations[st]['url'], newRows, region, oil, stations.length),
+    setInterval(displayPrices(constants.table, stations[st]['img'], stations[st]['url'], newRows, region, oil, stations.length),
     stations[st]['time'])
   }
 }
-
-
-
-
-
-
-/* THIS IS JUST A TEST TEST TEST*/
 
 function updatePrices(url) {
   return fetch(url)
@@ -245,62 +242,69 @@ function updatePrices(url) {
     });
 }
 
-//The three functions below are to handle the table element and it´s content
+//They all go inside fillrow
 
-function fillRow(imageurl, name, price, row){
+function logoContentAndCell(url){
   const logo = document.createElement("img");
-  logo.src = imageurl;
+  logo.src = url;
   logo.classList.add("logo-style")
 
-  const logocell = document.createElement("th");   
-  logocell.appendChild(logo)
+  const logoBox = document.createElement("th");   
+  logoBox.appendChild(logo)
+  return logoBox
+}
 
-  const namecell = document.createElement("th");
-  namecell.classList.add("table-cell-style")
+function priceContentAndCell(value){
+  const priceBox = document.createElement("th");
+  priceBox.style.fontSize = "1.3em"
+  priceBox.style.color = "#1C2E35";
+  priceBox.appendChild(document.createTextNode(value))
+  return priceBox
+}
 
-  if (name.length >= 15 && (name.includes(',') || name.includes(' '))) {
-    const regex = /,| /;
-    const parts = name.split(regex, 2);
-    const firstPart = parts[0] + " ";
-    const secondPart = parts[1];
-    namecell.appendChild(document.createTextNode(firstPart))
-    namecell.appendChild(document.createTextNode(secondPart))
+function nameContentAndCell(namevalue){
+  const nameCell = document.createElement("th");
+  nameCell.classList.add("table-cell-style")
+  if (namevalue.length >= 15 && (namevalue.includes(',') || namevalue.includes(' '))) {
+    const parts = namevalue.split(/,| /, 2);
+    nameCell.appendChild(document.createTextNode(parts[0] + " "))
+    nameCell.appendChild(document.createTextNode(parts[1]))
   }else{
-    namecell.appendChild(document.createTextNode(name))
+    nameCell.appendChild(document.createTextNode(namevalue))
   }
-  
-  const pricecell = document.createElement("th");
-  pricecell.style.fontSize = "1.3em"
-   pricecell.style.color = "#1C2E35";
-  pricecell.appendChild(document.createTextNode(price))
-  row.appendChild(logocell);
-  row.appendChild(namecell);
+  return nameCell
+}
+
+function fillRow(imageurl, name, price, row){
+  let logoCell = logoContentAndCell(imageurl)
+  const theNameCell = nameContentAndCell(name)
+  const pricecell = priceContentAndCell(price)
+  row.appendChild(logoCell);
+  row.appendChild(theNameCell);
   row.appendChild(pricecell);
 }
+
+//It finished here
 
 function newRows(filtered, imglink, gasprice, type) {
   return filtered.reduce((acc, station) => {
     let stationUpperFirst = station[0].toUpperCase() + station.slice(1);
     const pricesRow = document.createElement('tr');
-
     if (gasprice[station][type] != 0) {
       fillRow(imglink, stationUpperFirst, gasprice[station][type], pricesRow);
       pricesRow.classList.add('table-row-style');
-      acc.push(pricesRow); // Add the row to the accumulator array
+      acc.push(pricesRow); // 
     }
-
     return acc;
   }, []).sort((a, b) => parseFloat(a.lastElementChild.textContent) - parseFloat(b.lastElementChild.textContent));
 }
-
-
 
 function clearTable(tableElement) {
   const rows = Array.from(tableElement.querySelectorAll('tr'));
   rows.forEach(row => row.remove());
 }
 
-stationsPerRegion(currentRegion.textContent, stationsBuild, "bensin");
+stationsPerRegion(constants.currentRegion.textContent, constants.stationsBuild, "bensin");
 fuel = "bensin";
 
 
