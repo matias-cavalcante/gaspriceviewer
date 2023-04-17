@@ -17,8 +17,8 @@ constants.burger.addEventListener("click", () => {
   constants.revelnav.classList.toggle('burger-style');
   constants.body.classList.toggle('no-scroll');
   constants.navButtons.forEach((button, index) => {
-    button.classList.toggle("white-text", burgerState);
-    constants.listItems[index].classList.toggle("menu-displayed", burgerState);
+  button.classList.toggle("white-text", burgerState);
+  constants.listItems[index].classList.toggle("menu-displayed", burgerState);
   });
 });
 
@@ -39,12 +39,11 @@ window.addEventListener("resize", () => {
 });
 //NAVBAR AND BURGER MENU END HERE APPARENTLY
 
-
 constants.callToActionButton.addEventListener('click', () => {
   constants.secondSection.scrollIntoView({ behavior: 'smooth' });
 });
 
-
+//TWO BUTTONS TO SEE EITHER PETROL OR DIESEL
 constants.bensinButton.addEventListener("click", function () {
   fuel = "bensin"
   constants.priceH3.textContent = "Bensin verð";
@@ -96,7 +95,6 @@ constants.nextButton.addEventListener("click", () => {
 
 
 constants.table.classList.add('table-style')
-
 
 let completedRequests = 0;
 
@@ -191,6 +189,16 @@ stationsPerRegion(constants.currentRegion.textContent, constants.stationsBuild, 
 let fuel = "bensin";
 
 
+
+function initMap() {
+  new google.maps.Map(document.getElementById("map"), {
+    mapId: "d6c7877e45ecfbc3",
+    center: { lat: 48.85, lng: 2.35 },
+    zoom: 12,
+  });
+}
+
+window.initMap = initMap;
 
 
 
