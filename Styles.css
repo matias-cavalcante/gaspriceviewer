@@ -500,6 +500,8 @@ footer p {
 #map {
     width: 300px;
     height: 300px;
+    grid-column-start: 2;
+    grid-column-end: 3;
 }
 
 /*MEDIA QUERIES HERE */
