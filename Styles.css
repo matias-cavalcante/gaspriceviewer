@@ -496,13 +496,18 @@ footer p {
     color: white;
 }
 
+#map-section {
+    padding-left: 10%;
+    padding-right: 10%;
+    background-color: #5AE4A7;
+}
 
 #map {
-    width: 300px;
-    height: 300px;
-    display: inline-block;
-    grid-column-start: 2;
-    grid-column-end: 3;
+    width: 40%;
+}
+
+#map-panel {
+    width: 40%;
 }
 
 /*MEDIA QUERIES HERE */
