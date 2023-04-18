@@ -504,10 +504,12 @@ footer p {
 
 #map {
     width: 40%;
+    display: inline-block;
 }
 
 #map-panel {
     width: 40%;
+    display: inline-block;
 }
 
 /*MEDIA QUERIES HERE */
