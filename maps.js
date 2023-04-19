@@ -4,7 +4,7 @@ function initMap() {
   mapInstance = new google.maps.Map(document.getElementById("map"), {
     mapId: "d6c7877e45ecfbc3",
     center: { lat: 64.9631, lng: -19.0208 },
-    zoom: 10,
+    zoom: 20,
   });
 
   // Add the marker after the map has been initialized
