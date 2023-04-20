@@ -22,28 +22,31 @@ function init() {
     }
   
     function getUserLocation() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          position => {
-            const userPosition = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            };
-  
-            const userMarker = addMarker(userPosition.lat, userPosition.lng, "Your Location", "You are here");
-            userMarker.setIcon("http://maps.google.com/mapfiles/ms/icons/green-dot.png");
-  
-            mapInstance.setCenter(userPosition);
-            mapInstance.setZoom(12);
-          },
-          error => {
-            console.error("Error obtaining user location:", error);
-          }
-        );
-      } else {
-        console.error("Geolocation is not supported by this browser.");
+        if (navigator.geolocation) {
+          setTimeout(() => {
+            navigator.geolocation.getCurrentPosition(
+              position => {
+                const userPosition = {
+                  lat: position.coords.latitude,
+                  lng: position.coords.longitude,
+                };
+      
+                const userMarker = addMarker(userPosition.lat, userPosition.lng, "Your Location", "You are here");
+                userMarker.setIcon("http://maps.google.com/mapfiles/ms/icons/green-dot.png");
+      
+                mapInstance.setCenter(userPosition);
+                mapInstance.setZoom(12);
+              },
+              error => {
+                console.error("Error obtaining user location:", error);
+              }
+            );
+          }, 1000);
+        } else {
+          console.error("Geolocation is not supported by this browser.");
+        }
       }
-    }
+      
   
     function addMarker(lat, lng, title, content) {
       const marker = new google.maps.Marker({
