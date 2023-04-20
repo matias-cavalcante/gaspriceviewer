@@ -24,8 +24,6 @@ function initMap(data) {
     return mapInstance;
   }
 
-
-
   function getUserLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -52,13 +50,7 @@ function initMap(data) {
     }
   }
 
-window.initMap = initMap;
-
-
-
-
-
-
+window.initMap = fetchData;
 
 function addMarker(lat, lng, title, content) {
   const marker = new google.maps.Marker({
