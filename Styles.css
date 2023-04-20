@@ -497,14 +497,18 @@ footer p {
 }
 
 #map-section {
-    padding-left: 10%;
-    padding-right: 10%;
+    width: 80%;
+    position: relative;
+    left: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: #5AE4A7;
 }
 
 #map {
     width: 40%;
-    min-width: 425px;
+    min-width: 450px;
     min-height: 300px;
     display: inline-block;
 }
@@ -609,6 +613,12 @@ footer p {
     .spinner-container {
         height: 400px;
         max-width: 100%;
+    }
+
+    /*Map section*/
+
+    #map-section {
+        flex-direction: column;
     }
 
 
@@ -745,6 +755,14 @@ footer p {
         font-weight: normal;
         text-align: start;
     }
+
+
+
+    #map {
+        min-width: 275px;
+        min-height: 200px;
+    }
+
 
 }
 
