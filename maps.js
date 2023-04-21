@@ -45,6 +45,7 @@ function init() {
       }
     }
   
+    /*
     function addMarker(lat, lng, title, content) {
       const marker = new google.maps.Marker({
         position: { lat, lng },
@@ -65,7 +66,36 @@ function init() {
       });
   
       return marker;
-    }
+    }*/
+
+    function addMarker(lat, lng, title, content) {
+        const marker = new google.maps.Marker({
+          position: { lat, lng },
+          map: mapInstance,
+          title: title,
+        });
+      
+        const infoWindow = new google.maps.InfoWindow({
+          content: content,
+        });
+      
+        let isOpen = false;
+      
+        // Toggle the InfoWindow when the user clicks the marker
+        marker.addListener('click', () => {
+          if (isOpen) {
+            infoWindow.close();
+          } else {
+            infoWindow.open(mapInstance, marker);
+          }
+          isOpen = !isOpen;
+        });
+      
+        return marker;
+      }
+      
+
+
   
     fetchData();
   }
