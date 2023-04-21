@@ -1,5 +1,7 @@
 function init() {
     let mapInstance;
+    let currentInfoWindow;
+
   
     async function fetchData() {
       const response = await fetch('https://apis.is/petrol');
@@ -45,28 +47,7 @@ function init() {
       }
     }
   
-    /*
-    function addMarker(lat, lng, title, content) {
-      const marker = new google.maps.Marker({
-        position: { lat, lng },
-        map: mapInstance,
-        title: title,
-      });
-  
-      const infoWindow = new google.maps.InfoWindow({
-        content: content,
-      });
-  
-      marker.addListener('mouseover', () => {
-        infoWindow.open(mapInstance, marker);
-      });
-  
-      marker.addListener('mouseout', () => {
-        infoWindow.close();
-      });
-  
-      return marker;
-    }*/
+   /*
 
     function addMarker(lat, lng, title, content) {
         const marker = new google.maps.Marker({
@@ -92,7 +73,31 @@ function init() {
         });
       
         return marker;
+      }*/
+
+      function addMarker(lat, lng, title, content) {
+        const marker = new google.maps.Marker({
+          position: { lat, lng },
+          map: mapInstance,
+          title: title,
+        });
+      
+        const infoWindow = new google.maps.InfoWindow({
+          content: content,
+        });
+      
+        // Open the InfoWindow when the user clicks the marker
+        marker.addListener('click', () => {
+          if (currentInfoWindow) {
+            currentInfoWindow.close();
+          }
+          infoWindow.open(mapInstance, marker);
+          currentInfoWindow = infoWindow;
+        });
+      
+        return marker;
       }
+      
       
 
 
