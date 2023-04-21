@@ -2,6 +2,9 @@ function init() {
     let mapInstance;
     let currentInfoWindow;
 
+    let markers = [];
+    let data;
+
     async function fetchData() {
       const response = await fetch('https://apis.is/petrol');
       const data = await response.json();
@@ -73,6 +76,56 @@ function init() {
           infoWindow.open(mapInstance, marker);
           currentInfoWindow = infoWindow;
         });
+
+
+        //NEW CODE - NEW CODE - NEW CODE -
+        let currentCompanyIndex = 0;
+
+        function updateCompanyMarkers(companyName) {
+          // Clear all existing markers
+          markers.forEach(marker => marker.setMap(null));
+          markers = [];
+      
+          // Add markers for the selected company
+          data.results.forEach(gasStation => {
+            if (gasStation.company === companyName) {
+              const marker = addMarker(
+                gasStation.geo.lat,
+                gasStation.geo.lon,
+                gasStation.name,
+                `${gasStation.company} ${gasStation.name}<br>Bensin 95: ${gasStation.bensin95}<br>Diesel: ${gasStation.diesel}`,
+                "logos/fuel-station.png"
+              );
+              markers.push(marker);
+            }
+          });
+        }
+      
+        function switchCompany(direction) {
+          const companies = Array.from(document.getElementById("companies").children);
+          currentCompanyIndex += direction;
+      
+          if (currentCompanyIndex < 0) {
+            currentCompanyIndex = companies.length - 1;
+          } else if (currentCompanyIndex >= companies.length) {
+            currentCompanyIndex = 0;
+          }
+      
+          const companyName = companies[currentCompanyIndex].textContent;
+          document.getElementById("current-region").textContent = companyName;
+          updateCompanyMarkers(companyName);
+        }
+      
+        document.getElementById("prev-com").addEventListener("click", () => switchCompany(-1));
+        document.getElementById("next-com").addEventListener("click", () => switchCompany(1));
+      
+        // Initialize with the first company
+        switchCompany(0);
+        //NEW CODE - NEW CODE - NEW CODE -
+
+
+
+
       
         return marker;
       }
