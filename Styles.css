@@ -514,8 +514,10 @@ footer p {
 }
 
 #map-panel {
+    height: 100%;
     width: 40%;
-    display: inline-block;
+    display: flex;
+    justify-content: start;
 }
 
 /*MEDIA QUERIES HERE */
