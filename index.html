@@ -94,12 +94,6 @@
         <div id="map-panel">
             <h1>This is the panels map</h1>
             <h2>Content will be added soon</h2>
-            <!-- Add this line inside your HTML body to create the slider -->
-            <input type="range" id="distanceSlider" min="5" max="30" value="5">
-            <script>
-                const slider = document.getElementById("distance-slider");
-                slider.addEventListener("input", () => init.handleSliderChange(slider.value));
-            </script>
         </div>
         <div id="map"></div>
     </section>
@@ -138,7 +132,7 @@
     <script src="maps.js"></script>
 
     <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJ_3v4xYJrn2yiFsB6D9OdZyE2wlmCImQ&map_id=d6c7877e45ecfbc3&callback=initMap&libraries=geometry">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJ_3v4xYJrn2yiFsB6D9OdZyE2wlmCImQ&map_id=d6c7877e45ecfbc3&callback=initMap">
 
         </script>
 
