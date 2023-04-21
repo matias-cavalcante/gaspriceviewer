@@ -14,12 +14,18 @@ function init() {
         mapId: "d6c7877e45ecfbc3",
         center: { lat: 64.9631, lng: -19.0208 },
         zoom: 5,
+        mapTypeControl: false,
       });
   
       data.results.forEach(gasStation => {
-        addMarker(gasStation.geo.lat, gasStation.geo.lon, gasStation.name, `Name: ${gasStation.name}<br>Bensin 95: ${gasStation.bensin95}<br>Diesel: ${gasStation.diesel}`);
+        addMarker(
+          gasStation.geo.lat,
+          gasStation.geo.lon,
+          gasStation.name,
+          `${gasStation.company} ${gasStation.name}<br>Bensin 95: ${gasStation.bensin95}<br>Diesel: ${gasStation.diesel}`
+        );
       });
-  
+            
       getUserLocation();
     }
   
@@ -47,34 +53,6 @@ function init() {
       }
     }
   
-   /*
-
-    function addMarker(lat, lng, title, content) {
-        const marker = new google.maps.Marker({
-          position: { lat, lng },
-          map: mapInstance,
-          title: title,
-        });
-      
-        const infoWindow = new google.maps.InfoWindow({
-          content: content,
-        });
-      
-        let isOpen = false;
-      
-        // Toggle the InfoWindow when the user clicks the marker
-        marker.addListener('click', () => {
-          if (isOpen) {
-            infoWindow.close();
-          } else {
-            infoWindow.open(mapInstance, marker);
-          }
-          isOpen = !isOpen;
-        });
-      
-        return marker;
-      }*/
-
       function addMarker(lat, lng, title, content) {
         const marker = new google.maps.Marker({
           position: { lat, lng },
