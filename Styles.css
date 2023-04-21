@@ -518,6 +518,7 @@ footer p {
     width: 40%;
     display: flex;
     justify-content: start;
+    flex-direction: column;
 }
 
 /*MEDIA QUERIES HERE */
