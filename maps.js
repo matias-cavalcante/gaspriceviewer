@@ -92,6 +92,7 @@ let currentInfoWindow;
 
 
   function init() {
+    let markers = [];
     let mapInstance;
     let currentInfoWindow;
 
@@ -166,6 +167,29 @@ let currentInfoWindow;
 
       document.getElementById('distanceSlider').addEventListener('input', filterGasStations);
 
+      function handleSliderChange(distance) {
+        // Clear all existing markers
+        markers.forEach(marker => marker.setMap(null));
+      
+        // Add markers that are within the selected distance
+        data.results.forEach(gasStation => {
+          const gasStationPosition = new google.maps.LatLng(gasStation.geo.lat, gasStation.geo.lon);
+          const userPosition = new google.maps.LatLng(userLocation.lat, userLocation.lng);
+          const distanceFromUser = google.maps.geometry.spherical.computeDistanceBetween(gasStationPosition, userPosition);
+      
+          if (distanceFromUser / 1000 <= distance) {
+            addMarker(
+              gasStation.geo.lat,
+              gasStation.geo.lon,
+              gasStation.name,
+              `${gasStation.company} ${gasStation.name}<br>Bensin 95: ${gasStation.bensin95}<br>Diesel: ${gasStation.diesel}`,
+              "logos/fuel-station.png"
+            );
+          }
+        });
+      }
+      
+
 
   
       function addMarker(lat, lng, title, content, iconUrl) {
@@ -175,6 +199,9 @@ let currentInfoWindow;
           title: title,
           icon: iconUrl,
         });
+
+          // Add the marker to the markers array
+          markers.push(marker);
       
         const infoWindow = new google.maps.InfoWindow({
           content: content,

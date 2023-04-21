@@ -96,6 +96,10 @@
             <h2>Content will be added soon</h2>
             <!-- Add this line inside your HTML body to create the slider -->
             <input type="range" id="distanceSlider" min="5" max="30" value="5">
+            <script>
+                const slider = document.getElementById("distance-slider");
+                slider.addEventListener("input", () => init.handleSliderChange(slider.value));
+            </script>
         </div>
         <div id="map"></div>
     </section>
