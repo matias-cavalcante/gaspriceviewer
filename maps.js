@@ -22,7 +22,8 @@ function init() {
           gasStation.geo.lat,
           gasStation.geo.lon,
           gasStation.name,
-          `${gasStation.company} ${gasStation.name}<br>Bensin 95: ${gasStation.bensin95}<br>Diesel: ${gasStation.diesel}`
+          `${gasStation.company} ${gasStation.name}<br>Bensin 95: ${gasStation.bensin95}<br>Diesel: ${gasStation.diesel}`,
+          "logos/fuel-station.png"
         );
       });
             
@@ -53,11 +54,12 @@ function init() {
       }
     }
   
-      function addMarker(lat, lng, title, content) {
+      function addMarker(lat, lng, title, content, iconUrl) {
         const marker = new google.maps.Marker({
           position: { lat, lng },
           map: mapInstance,
           title: title,
+          icon: iconUrl,
         });
       
         const infoWindow = new google.maps.InfoWindow({
