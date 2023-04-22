@@ -3,7 +3,7 @@ function init() {
     let start = 0;
 
 
-    const currentRegion = document.getElementById("current-region")
+    const currentCompany = document.getElementById("current-company")
     const arrowLeft = document.getElementById("prev-com");
     //const arrowRight = document.getElementById("next-com");
 
