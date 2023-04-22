@@ -13,6 +13,12 @@ function init() {
     const arrowLeft = document.getElementById("prev-com");
     const arrowRight = document.getElementById("next-com");
 
+    async function fetchData() {
+        const response = await fetch('https://apis.is/petrol');
+        const data = await response.json();
+        initMap(data);
+      }
+
     function clearMarkers() {
         for (let i = 0; i < markers.length; i++) {
           markers[i].setMap(null);
@@ -77,11 +83,7 @@ function init() {
     let mapInstance;
     let currentInfoWindow;
 
-    async function fetchData() {
-        const response = await fetch('https://apis.is/petrol');
-        const data = await response.json();
-        initMap(data);
-      }
+
 
 
   
