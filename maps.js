@@ -9,12 +9,12 @@ function init() {
 
     arrowLeft.addEventListener("click", function(){
         if (start >= 1){
-            currentRegion.innerText = companies[start-1]
+            currentCompany.innerText = companies[start-1]
             start = start - 1
         }
         else if (start == 0){
             start = companies.length-1
-            currentRegion.innerText = companies[start]
+            currentCompany.innerText = companies[start]
         }
     })
 
