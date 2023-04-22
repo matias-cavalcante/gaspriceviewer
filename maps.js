@@ -1,4 +1,8 @@
 function init() {
+
+  
+    let data;
+
     let companies = ['Orkan', 'Olís', 'ÓB', 'Atlantsolía', 'N1' ]
     let start = 0;
     let markers = []; 
@@ -73,12 +77,13 @@ function init() {
     let mapInstance;
     let currentInfoWindow;
 
-
     async function fetchData() {
-      const response = await fetch('https://apis.is/petrol');
-      const data = await response.json();
-      initMap(data);
-    }
+        const response = await fetch('https://apis.is/petrol');
+        const data = await response.json();
+        initMap(data);
+      }
+
+
   
     function initMap(data) {
       mapInstance = new google.maps.Map(document.getElementById("map"), {
