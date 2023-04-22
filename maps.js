@@ -1,5 +1,5 @@
 function init() {
-    let companies = ['Orkan', 'Olis', 'Ob', 'Atlantsolia', 'N1' ]
+    let companies = ['Orkan', 'Olís', 'ÓB', 'Atlantsolía', 'N1' ]
     let start = 0;
     let markers = []; 
 
@@ -15,30 +15,54 @@ function init() {
         }
         markers = [];
       }
+
+      
+      function addMarkersByCompany(companyName) {
+        // Loop through the gas stations data and add markers only for the matching company
+        data.results.forEach(gasStation => {
+          if (gasStation.company === companyName) {
+            const marker = addMarker(
+              gasStation.geo.lat,
+              gasStation.geo.lon,
+              gasStation.name,
+              `${gasStation.company} ${gasStation.name}<br>Bensin 95: ${gasStation.bensin95}<br>Diesel: ${gasStation.diesel}`,
+              "logos/fuel-station.png"
+            );
+          }
+        });
+      }
+      
       
     arrowLeft.addEventListener("click", function(){
+        let selectedCompany = "";
         if (start >= 1){
-            currentCompany.innerText = companies[start-1]
+            selectedCompany = companies[start-1]
+            currentCompany.innerText = selectedCompany
             start = start - 1
         }
         else if (start == 0){
             start = companies.length-1
-            currentCompany.innerText = companies[start]
+            selectedCompany = companies[start]
+            currentCompany.innerText = selectedCompany
         }
-
         clearMarkers()
+        addMarkersByCompany(selectedCompany)
     })
 
     arrowRight.addEventListener("click", function(){
+        let selectedCompany = "";
         if (start <= companies.length-2){
             start = start + 1
-            currentCompany.innerText = companies[start]
+            selectedCompany = companies[start]
+            currentCompany.innerText = selectedCompany
         }
         else if (start == companies.length-1){
             start = companies.length - start
-            currentCompany.innerText = companies[start]
+            selectedCompany = companies[start]
+            currentCompany.innerText = selectedCompany
         }
         clearMarkers()
+        addMarkersByCompany(selectedCompany)
     })
 
 
