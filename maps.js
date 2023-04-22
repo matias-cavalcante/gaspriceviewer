@@ -17,6 +17,7 @@ function init() {
         const response = await fetch('https://apis.is/petrol');
         const data = await response.json();
         initMap(data);
+
         arrowLeft.addEventListener("click", function(){
             let selectedCompany = "";
             if (start >= 1){
@@ -30,7 +31,7 @@ function init() {
                 currentCompany.innerText = selectedCompany
             }
             clearMarkers()
-            addMarkersByCompany(selectedCompany)
+            addMarkersByCompany(selectedCompany, data)
         })
     
         arrowRight.addEventListener("click", function(){
@@ -46,7 +47,7 @@ function init() {
                 currentCompany.innerText = selectedCompany
             }
             clearMarkers()
-            addMarkersByCompany(selectedCompany)
+            addMarkersByCompany(selectedCompany, data)
         })
     
       }
@@ -59,7 +60,7 @@ function init() {
       }
 
       
-      function addMarkersByCompany(companyName) {
+      function addMarkersByCompany(companyName, data) {
         // Loop through the gas stations data and add markers only for the matching company
         data.results.forEach(gasStation => {
           if (gasStation.company === companyName) {
