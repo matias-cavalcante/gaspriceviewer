@@ -17,6 +17,38 @@ function init() {
         const response = await fetch('https://apis.is/petrol');
         const data = await response.json();
         initMap(data);
+        arrowLeft.addEventListener("click", function(){
+            let selectedCompany = "";
+            if (start >= 1){
+                selectedCompany = companies[start-1]
+                currentCompany.innerText = selectedCompany
+                start = start - 1
+            }
+            else if (start == 0){
+                start = companies.length-1
+                selectedCompany = companies[start]
+                currentCompany.innerText = selectedCompany
+            }
+            clearMarkers()
+            addMarkersByCompany(selectedCompany)
+        })
+    
+        arrowRight.addEventListener("click", function(){
+            let selectedCompany = "";
+            if (start <= companies.length-2){
+                start = start + 1
+                selectedCompany = companies[start]
+                currentCompany.innerText = selectedCompany
+            }
+            else if (start == companies.length-1){
+                start = companies.length - start
+                selectedCompany = companies[start]
+                currentCompany.innerText = selectedCompany
+            }
+            clearMarkers()
+            addMarkersByCompany(selectedCompany)
+        })
+    
       }
 
     function clearMarkers() {
@@ -43,38 +75,7 @@ function init() {
       }
       
       
-    arrowLeft.addEventListener("click", function(){
-        let selectedCompany = "";
-        if (start >= 1){
-            selectedCompany = companies[start-1]
-            currentCompany.innerText = selectedCompany
-            start = start - 1
-        }
-        else if (start == 0){
-            start = companies.length-1
-            selectedCompany = companies[start]
-            currentCompany.innerText = selectedCompany
-        }
-        clearMarkers()
-        addMarkersByCompany(selectedCompany)
-    })
-
-    arrowRight.addEventListener("click", function(){
-        let selectedCompany = "";
-        if (start <= companies.length-2){
-            start = start + 1
-            selectedCompany = companies[start]
-            currentCompany.innerText = selectedCompany
-        }
-        else if (start == companies.length-1){
-            start = companies.length - start
-            selectedCompany = companies[start]
-            currentCompany.innerText = selectedCompany
-        }
-        clearMarkers()
-        addMarkersByCompany(selectedCompany)
-    })
-
+    
 
 
 
