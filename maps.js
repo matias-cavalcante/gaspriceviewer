@@ -1,12 +1,21 @@
 function init() {
     let companies = ['Orkan', 'Olis', 'Ob', 'Atlantsolia', 'N1' ]
     let start = 0;
+    let markers = []; 
+
 
 
     const currentCompany = document.getElementById("current-company")
     const arrowLeft = document.getElementById("prev-com");
     const arrowRight = document.getElementById("next-com");
 
+    function clearMarkers() {
+        for (let i = 0; i < markers.length; i++) {
+          markers[i].setMap(null);
+        }
+        markers = [];
+      }
+      
     arrowLeft.addEventListener("click", function(){
         if (start >= 1){
             currentCompany.innerText = companies[start-1]
@@ -16,8 +25,9 @@ function init() {
             start = companies.length-1
             currentCompany.innerText = companies[start]
         }
-    })
 
+        clearMarkers()
+    })
 
     arrowRight.addEventListener("click", function(){
         if (start <= companies.length-2){
@@ -28,6 +38,7 @@ function init() {
             start = companies.length - start
             currentCompany.innerText = companies[start]
         }
+        clearMarkers()
     })
 
 
@@ -114,7 +125,7 @@ function init() {
 
         //NEW CODE - NEW CODE - NEW CODE -
         //NEW CODE - NEW CODE - NEW CODE -
-
+        markers.push(marker);  //
         return marker;
       }
     fetchData();
