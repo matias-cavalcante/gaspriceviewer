@@ -5,7 +5,7 @@ function init() {
 
     const currentCompany = document.getElementById("current-company")
     const arrowLeft = document.getElementById("prev-com");
-    //const arrowRight = document.getElementById("next-com");
+    const arrowRight = document.getElementById("next-com");
 
     arrowLeft.addEventListener("click", function(){
         if (start >= 1){
@@ -17,6 +17,23 @@ function init() {
             currentCompany.innerText = companies[start]
         }
     })
+
+
+    arrowRight.addEventListener("click", function(){
+        if (start <= companies.length-2){
+            start = start + 1
+            currentCompany.innerText = companies[start]
+        }
+        else if (start == companies.length-1){
+            start = companies.length - start
+            currentCompany.innerText = companies[start]
+        }
+    })
+
+
+
+
+
 
     let mapInstance;
     let currentInfoWindow;
