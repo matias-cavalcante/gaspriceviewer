@@ -5,10 +5,10 @@ function init() {
 
     const currentRegion = document.getElementById("current-region")
     const arrowLeft = document.getElementById("prev-com");
-    const arrowRight = document.getElementById("next-com");
+    //const arrowRight = document.getElementById("next-com");
 
     arrowLeft.addEventListener("click", function(){
-        if (start => 1){
+        if (start >= 1){
             currentRegion.innerText = companies[start-1]
             start = start - 1
         }
@@ -16,7 +16,6 @@ function init() {
             start = companies.length-1
             currentRegion.innerText = companies[start]
         }
-        
     })
 
     let mapInstance;
