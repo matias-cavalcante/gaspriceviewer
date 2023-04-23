@@ -36,11 +36,11 @@ function init() {
     
         arrowRight.addEventListener("click", function(){
             let selectedCompany = "";
-            if (start < companies.length - 1) {
+            if (start <= companies.length - 2) {
                 start = start + 1;
                 selectedCompany = companies[start];
                 currentCompany.innerText = selectedCompany;
-            } else if (start === companies.length - 1) {
+            } else if (start == companies.length - 1) {
                 start = 0;
                 selectedCompany = companies[start];
                 currentCompany.innerText = selectedCompany;
