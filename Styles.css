@@ -83,14 +83,14 @@ body {
 }
 
 
-#prev {
+.carousel-arrow {
     width: 80%;
     grid-row: 2;
     grid-column-start: 1;
     grid-column-end: 3;
 }
 
-#next {
+.carousel-arrow {
     width: 80%;
     margin-left: 20%;
     grid-row: 2;
@@ -98,8 +98,7 @@ body {
     grid-column-end: 5;
 }
 
-#prev,
-#next {
+.carousel-arrow {
     height: 30px;
     border: 0px;
     font-size: 1.5em;
@@ -107,8 +106,7 @@ body {
     box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.6);
 }
 
-#prev:hover,
-#next:hover {
+.carousel-arrow:hover {
     cursor: pointer;
 }
 
@@ -561,8 +559,7 @@ footer p {
         margin-bottom: 15%;
     }
 
-    #prev,
-    #next {
+    .carousel-arrow {
         height: 40px;
     }
 
