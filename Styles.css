@@ -59,6 +59,10 @@ body {
     transition: transform 0.3s ease-out;
 }
 
+.hidden {
+    display: none;
+}
+
 .carousel-cont {
     width: 100%;
     display: grid;
@@ -67,8 +71,16 @@ body {
 }
 
 
+#choose-company {
+    border: 0;
+    background-color: #5AE4A7 !important;
+    color: black !important;
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.6);
+}
+
 #current-region,
-#current-company {
+#current-company,
+#choose-company {
     height: 30px;
     display: flex;
     align-items: center;
@@ -115,7 +127,8 @@ body {
 #prev:hover,
 #prev-com:hover,
 #next-com:hover,
-#next:hover {
+#next:hover,
+#choose-company {
     cursor: pointer;
 }
 
@@ -515,24 +528,24 @@ footer p {
 }
 
 #map {
-    width: 40%;
+    width: 600px;
     min-width: 450px;
     min-height: 300px;
     display: inline-block;
 }
 
 #map-panel {
-    background-color: green;
-    height: 100%;
-    width: 120%;
-    width: 40%;
+    min-height: 300px;
+    width: 25%;
     display: flex;
-    justify-content: start;
+    justify-content: center;
     flex-direction: column;
 }
 
 #map-panel h1 {
-    font-size: 1.6em;
+    font-size: 0.9em;
+    margin-bottom: 0;
+    margin-bottom: 10%;
 }
 
 /*MEDIA QUERIES HERE */

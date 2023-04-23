@@ -1,13 +1,14 @@
 function init() {
 
   
-    let data;
-
     let companies = ['Orkan', 'Olís', 'ÓB', 'Atlantsolía', 'N1' ]
     let start = 0;
     let markers = []; 
 
 
+    const chooseCompany = document.getElementById("choose-company")
+    const companiesCarousel = document.getElementById("companies-carousel")
+   
 
     const currentCompany = document.getElementById("current-company")
     const arrowLeft = document.getElementById("prev-com");
@@ -17,6 +18,19 @@ function init() {
         const response = await fetch('https://apis.is/petrol');
         const data = await response.json();
         initMap(data);
+
+        chooseCompany.addEventListener("click", function(){
+            companiesCarousel.classList.toggle("hidden");
+            companiesCarousel.classList.toggle("carousel-cont");
+    
+            if (chooseCompany.textContent === "Choose company") {
+                chooseCompany.textContent = "See all companies";
+            } else {
+                chooseCompany.textContent = "Choose company";
+                initMap(data)//carefull here
+            }
+        })
+
 
         arrowLeft.addEventListener("click", function(){
             let selectedCompany = "";
