@@ -36,16 +36,15 @@ function init() {
     
         arrowRight.addEventListener("click", function(){
             let selectedCompany = "";
-            if (start >= 0){
-                start = start + 1
-                selectedCompany = companies[start]
-                currentCompany.innerText = selectedCompany
-            }
-            else if (start == companies.length-1){
-                start = companies.length - start
-                selectedCompany = companies[start]
-                currentCompany.innerText = selectedCompany
-            }
+            if (start < companies.length - 1) {
+                start = start + 1;
+                selectedCompany = companies[start];
+                currentCompany.innerText = selectedCompany;
+            } else if (start === companies.length - 1) {
+                start = 0;
+                selectedCompany = companies[start];
+                currentCompany.innerText = selectedCompany;
+              }
             clearMarkers()
             addMarkersByCompany(selectedCompany, data)
         })
