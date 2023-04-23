@@ -610,6 +610,7 @@ footer p {
 
     #dropdown-box {
         width: 90%;
+        max-width: 650px;
         position: relative;
         display: flex;
         flex-direction: column;
@@ -630,6 +631,13 @@ footer p {
         height: 40px;
         font-size: 1.3em;
     }
+
+    /*BUTTONS SHOULD HAVE A MAX WIDTH BELOW CERTAIN SCREEN SIZES*/
+
+    #fuel-type {
+        max-width: 450px;
+    }
+
 
     #table-block {
         max-width: 90%;
@@ -656,13 +664,13 @@ footer p {
     }
 
     #map-panel {
-        width: 100%;
+        min-width: 450px;
         text-align: center;
     }
 
+
     #map {
         width: 100%;
-
     }
 
 
@@ -738,6 +746,11 @@ footer p {
         grid-column-end: 7;
         grid-row-start: 2;
         grid-row-end: 3;
+    }
+
+    #map-panel {
+        min-width: 80%;
+        text-align: center;
     }
 
     .about-blocks {

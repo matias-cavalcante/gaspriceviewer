@@ -24,13 +24,13 @@ function init() {
             companiesCarousel.classList.toggle("hidden");
             companiesCarousel.classList.toggle("carousel-cont");
     
-            if (chooseCompany.textContent === "Choose company") {
-                chooseCompany.textContent = "See all companies";
+            if (chooseCompany.textContent === "Veldu olíufélag") {
+                chooseCompany.textContent = "Sýna öll olíufélög";
                 clearMarkers()
                 addMarkersByCompany(companies[0], data)
 
-            } else if (chooseCompany.textContent === "See all companies"){
-                chooseCompany.textContent = "Choose company";
+            } else if (chooseCompany.textContent === "Sýna öll olíufélög"){
+                chooseCompany.textContent = "Veldu olíufélag";
                 //carefull here
                 clearMarkers()
                 initMap(data)
