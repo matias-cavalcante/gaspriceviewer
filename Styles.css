@@ -67,7 +67,8 @@ body {
 }
 
 
-#current-region {
+#current-region,
+#current-company {
     height: 30px;
     display: flex;
     align-items: center;
@@ -521,8 +522,9 @@ footer p {
 }
 
 #map-panel {
-    background-color: aqua;
+    background-color: green;
     height: 100%;
+    width: 120%;
     width: 40%;
     display: flex;
     justify-content: start;
