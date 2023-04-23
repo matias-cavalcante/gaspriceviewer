@@ -25,9 +25,13 @@ function init() {
     
             if (chooseCompany.textContent === "Choose company") {
                 chooseCompany.textContent = "See all companies";
+                clearMarkers()
+                initMap(data)
             } else {
                 chooseCompany.textContent = "Choose company";
-                initMap(data)//carefull here
+                //carefull here
+                clearMarkers()
+                addMarkersByCompany(companies[0], data)
             }
         })
 
