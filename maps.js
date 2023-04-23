@@ -28,8 +28,8 @@ function init() {
                 chooseCompany.textContent = "See all companies";
                 clearMarkers()
                 initMap(data)
-            } else {
-                chooseCompany.textContent = "See all companies";
+            } else if (chooseCompany.textContent === "See all companies"){
+                chooseCompany.textContent = "Choose company";
                 //carefull here
                 clearMarkers()
                 addMarkersByCompany(companies[0], data)
