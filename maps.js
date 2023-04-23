@@ -36,7 +36,7 @@ function init() {
     
         arrowRight.addEventListener("click", function(){
             let selectedCompany = "";
-            if (start <= companies.length-2){
+            if (start <= companies.length-1){
                 start = start + 1
                 selectedCompany = companies[start]
                 currentCompany.innerText = selectedCompany
