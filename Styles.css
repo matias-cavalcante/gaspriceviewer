@@ -83,14 +83,16 @@ body {
 }
 
 
-.carousel-arrow {
+#prev,
+#prev-com {
     width: 80%;
     grid-row: 2;
     grid-column-start: 1;
     grid-column-end: 3;
 }
 
-.carousel-arrow {
+#next,
+#next-com {
     width: 80%;
     margin-left: 20%;
     grid-row: 2;
@@ -98,7 +100,10 @@ body {
     grid-column-end: 5;
 }
 
-.carousel-arrow {
+#prev,
+#prev-com,
+#next-com,
+#next {
     height: 30px;
     border: 0px;
     font-size: 1.5em;
@@ -106,7 +111,10 @@ body {
     box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.6);
 }
 
-.carousel-arrow:hover {
+#prev:hover,
+#prev-com:hover,
+#next-com:hover,
+#next:hover {
     cursor: pointer;
 }
 
@@ -559,7 +567,10 @@ footer p {
         margin-bottom: 15%;
     }
 
-    .carousel-arrow {
+    #prev,
+    #prev-com,
+    #next-com,
+    #next {
         height: 40px;
     }
 
