@@ -524,7 +524,6 @@ footer p {
     justify-content: space-between;
     align-items: center;
     background-color: white;
-    border: 1px solid black;
 }
 
 #map {
@@ -543,7 +542,8 @@ footer p {
 }
 
 #map-panel h1 {
-    font-size: 0.9em;
+    font-size: 1.1em;
+    font-weight: 600;
     margin-bottom: 0;
     margin-bottom: 10%;
 }
@@ -651,6 +651,18 @@ footer p {
 
     #map-section {
         flex-direction: column;
+        width: 90%;
+        left: 5%;
+    }
+
+    #map-panel {
+        width: 100%;
+        text-align: center;
+    }
+
+    #map {
+        width: 100%;
+
     }
 
 

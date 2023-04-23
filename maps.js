@@ -29,7 +29,6 @@ function init() {
                 clearMarkers()
                 addMarkersByCompany(companies[0], data)
 
-
             } else if (chooseCompany.textContent === "See all companies"){
                 chooseCompany.textContent = "Choose company";
                 //carefull here
