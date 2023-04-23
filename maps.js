@@ -19,7 +19,7 @@ function init() {
         const data = await response.json();
         initMap(data);
 
-        /*
+        
         chooseCompany.addEventListener("click", function(){
             companiesCarousel.classList.toggle("hidden");
             companiesCarousel.classList.toggle("carousel-cont");
@@ -27,51 +27,17 @@ function init() {
             if (chooseCompany.textContent === "Choose company") {
                 chooseCompany.textContent = "See all companies";
                 clearMarkers()
-                initMap(data)
+                addMarkersByCompany(companies[0], data)
+
+
             } else if (chooseCompany.textContent === "See all companies"){
                 chooseCompany.textContent = "Choose company";
                 //carefull here
                 clearMarkers()
-                addMarkersByCompany(companies[0], data)
+                initMap(data)
             }
-        })*/
+        })
 
-        chooseCompany.addEventListener("click", function() {
-            companiesCarousel.classList.toggle("hidden");
-            companiesCarousel.classList.toggle("carousel-cont");
-        
-            if (chooseCompany.textContent === "Choose company") {
-                chooseCompany.textContent = "See all companies";
-                clearMarkers();
-                // Show markers only for the first company in the array
-                data.results.forEach(gasStation => {
-                    if (gasStation.company === companies[0]) {
-                        addMarker(
-                            gasStation.geo.lat,
-                            gasStation.geo.lon,
-                            gasStation.name,
-                            `${gasStation.company} ${gasStation.name}<br>Bensin 95: ${gasStation.bensin95}<br>Diesel: ${gasStation.diesel}`,
-                            "logos/fuel-station.png"
-                        );
-                    }
-                });
-            } else if (chooseCompany.textContent === "See all companies") {
-                chooseCompany.textContent = "Choose company";
-                clearMarkers();
-                // Show all markers
-                data.results.forEach(gasStation => {
-                    addMarker(
-                        gasStation.geo.lat,
-                        gasStation.geo.lon,
-                        gasStation.name,
-                        `${gasStation.company} ${gasStation.name}<br>Bensin 95: ${gasStation.bensin95}<br>Diesel: ${gasStation.diesel}`,
-                        "logos/fuel-station.png"
-                    );
-                });
-            }
-        });
-        
-        
 
         arrowLeft.addEventListener("click", function(){
             let selectedCompany = "";
