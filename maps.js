@@ -19,7 +19,7 @@ function init() {
         const data = await response.json();
         initMap(data);
 
-        /*
+        
         chooseCompany.addEventListener("click", function(){
             companiesCarousel.classList.toggle("hidden");
             companiesCarousel.classList.toggle("carousel-cont");
@@ -29,38 +29,12 @@ function init() {
                 clearMarkers()
                 initMap(data)
             } else {
-                chooseCompany.textContent = "Choose company";
+                chooseCompany.textContent = "See all companies";
                 //carefull here
                 clearMarkers()
                 addMarkersByCompany(companies[0], data)
             }
-        })*/
-
-
-        chooseCompany.addEventListener("click", function() {
-            companiesCarousel.classList.toggle("hidden");
-            companiesCarousel.classList.toggle("carousel-cont");
-        
-            if (chooseCompany.textContent === "Choose company") {
-                chooseCompany.textContent = "See all companies";
-                clearMarkers();
-                data.results.forEach(gasStation => {
-                    addMarker(
-                        gasStation.geo.lat,
-                        gasStation.geo.lon,
-                        gasStation.name,
-                        `${gasStation.company} ${gasStation.name}<br>Bensin 95: ${gasStation.bensin95}<br>Diesel: ${gasStation.diesel}`,
-                        "logos/fuel-station.png"
-                    );
-                });
-            } else {
-                chooseCompany.textContent = "Choose company";
-                clearMarkers();
-                addMarkersByCompany(companies[0], data);
-            }
-        });
-        
-
+        })
 
         arrowLeft.addEventListener("click", function(){
             let selectedCompany = "";
