@@ -521,10 +521,13 @@ footer p {
     color: white;
 }
 
-#contact a {
-    color: white;
-    font-size: 1em;
-    font-weight: 500;
+#mail {
+    height: 45px;
+}
+
+#contact {
+    display: flex;
+    align-items: center;
 }
 
 #map-section {
