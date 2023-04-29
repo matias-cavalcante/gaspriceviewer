@@ -530,6 +530,10 @@ footer p {
     align-items: center;
 }
 
+#contact a img {
+    height: 35px;
+}
+
 #map-section {
     width: 80%;
     position: relative;
