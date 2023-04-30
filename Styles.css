@@ -857,6 +857,10 @@ footer p {
         height: 75vh;
     }
 
+    #hero-text h1 {
+        font-size: 2.1em;
+    }
+
     #hero-img {
         max-width: 275px;
         max-height: 200px;
