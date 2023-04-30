@@ -90,7 +90,8 @@ function init() {
     function getCompanyName(name){
         const parts = name.split(" "); // Split the string on the space
         const firstPart = parts[0]; // Get the first element of the array
-        return "markers/" + firstPart.toLowerCase() + ".png"
+        let img =  "markers/" + firstPart.toLowerCase() + ".png"
+
     }
       
     let mapInstance;
