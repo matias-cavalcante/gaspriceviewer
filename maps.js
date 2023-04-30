@@ -87,13 +87,31 @@ function init() {
         });
       }
     
+    /*
 
     function getCompanyName(name){
         const parts = name.split(" "); // Split the string on the space
         const firstPart = parts[0]; // Get the first element of the array
         let img =  "markers/" + firstPart.toLowerCase() + ".png"
+        img.style.height = "70px";
         return img
-    }
+    }*/
+
+
+    function getCompanyName(name) {
+        const parts = name.split(" "); // Split the string on the space
+        const firstPart = parts[0]; // Get the first element of the array
+        const imgSrc = "markers/" + firstPart.toLowerCase() + ".png";
+        const icon = {
+          url: imgSrc,
+          scaledSize: new google.maps.Size(90, 70), // Set the desired dimensions
+        };
+        return icon;
+      }
+      
+
+
+
       
     let mapInstance;
     let currentInfoWindow;
