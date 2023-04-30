@@ -91,7 +91,6 @@ function init() {
         const parts = name.split(" "); // Split the string on the space
         const firstPart = parts[0]; // Get the first element of the array
         const imgSrc = "markers/" + firstPart.toLowerCase() + ".png";
-        console.log("IMG PATH  ",   imgSrc )
         const icon = {
           url: imgSrc,
           scaledSize: new google.maps.Size(40, 36), // Set the desired dimensions
@@ -115,7 +114,7 @@ function init() {
           gasStation.geo.lat,
           gasStation.geo.lon,
           gasStation.name,
-          `${gasStation.company} ${gasStation.name}<br><span style="color: #1C2E35;">Bensín </span> ${gasStation.bensin95}<br>Dísel ${gasStation.diesel}`,
+          `${gasStation.company} ${gasStation.name}<br>Bensín ${gasStation.bensin95}<br>Dísel ${gasStation.diesel}`,
           getCompanyName(gasStation.company)
         );
       });
@@ -133,7 +132,15 @@ function init() {
             };
   
             const userMarker = addMarker(userPosition.lat, userPosition.lng, "Your Location", "You are here");
-            userMarker.setIcon("markers/pin.png");
+
+            const icon = {
+                url: "markers/pin.png",
+                scaledSize: new google.maps.Size(40, 50) // New size of the image on the map
+              };
+              
+              userMarker.setIcon(icon);
+
+
   
             mapInstance.setCenter(userPosition);
             mapInstance.setZoom(12);
