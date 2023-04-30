@@ -71,12 +71,6 @@ body {
 }
 
 
-#choose-company {
-    border: 0;
-    background-color: #5AE4A7 !important;
-    color: black !important;
-    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.6);
-}
 
 #current-region,
 #current-company,
@@ -96,7 +90,11 @@ body {
 }
 
 #choose-company {
-    height: 40px;
+    width: 100%;
+    border: 0;
+    background-color: #5AE4A7 !important;
+    color: black !important;
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.6);
 }
 
 
@@ -691,6 +689,11 @@ footer p {
         text-align: center;
     }
 
+    #choose-company {
+        height: 40px;
+        width: 100%;
+    }
+
 
     #map {
         width: 100%;
@@ -772,7 +775,7 @@ footer p {
     }
 
     #map-panel {
-        min-width: 80%;
+        min-width: 100%;
         text-align: center;
     }
 
