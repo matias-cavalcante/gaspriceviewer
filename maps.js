@@ -110,7 +110,7 @@ function init() {
           gasStation.geo.lon,
           gasStation.name,
           `${gasStation.company} ${gasStation.name}<br>Bensin 95: ${gasStation.bensin95}<br>Diesel: ${gasStation.diesel}`,
-          "logos/fuel-station.png"
+          getCompanyName(gasStation.name)
         );
       });
             
