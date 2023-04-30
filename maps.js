@@ -80,7 +80,7 @@ function init() {
                     gasStation.geo.lat,
                     gasStation.geo.lon,
                     gasStation.name,
-                    `${gasStation.company} ${gasStation.name}<br><span style="color: #1C2E35;">Bensín </span>${gasStation.bensin95}<br><span style="color: #1C2E35;">Dísel </span>${gasStation.diesel}`,
+                    `${gasStation.company} ${gasStation.name}<br><span style="color: #1C2E35;">"Bensín" </span>${gasStation.bensin95}<br><span style="color: #1C2E35;">"Dísel" </span>${gasStation.diesel}`,
                     getCompanyName(gasStation.company)
                 );
             }  
