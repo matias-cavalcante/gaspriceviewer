@@ -87,12 +87,28 @@ function init() {
         });
       }
 
+    /*
     function getCompanyName(name){
         const parts = name.split(" "); // Split the string on the space
         const firstPart = parts[0]; // Get the first element of the array
         let img =  "markers/" + firstPart.toLowerCase() + ".png"
         return img
+    }*/
+
+    function getCompanyName(name) {
+        const parts = name.split(" "); // Split the string on the space
+        const firstPart = parts[0]; // Get the first element of the array
+        const imgPath = "markers/" + firstPart.toLowerCase() + ".png";
+        
+        // Create an img element, set its src and height properties
+        const img = document.createElement("img");
+        img.src = imgPath;
+        img.height = 50;
+        img.style.borderRadius = "4px";
+        
+        return img;
     }
+    
       
     let mapInstance;
     let currentInfoWindow;
