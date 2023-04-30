@@ -91,7 +91,7 @@ function init() {
         const parts = name.split(" "); // Split the string on the space
         const firstPart = parts[0]; // Get the first element of the array
         let img =  "markers/" + firstPart.toLowerCase() + ".png"
-
+        return img
     }
       
     let mapInstance;
