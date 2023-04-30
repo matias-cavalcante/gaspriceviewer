@@ -75,17 +75,17 @@ function init() {
       function addMarkersByCompany(companyName, data) {
         // Loop through the gas stations data and add markers only for the matching company
         data.results.forEach(gasStation => {
-            if (gasStation.company === companyName) {
-                const marker = addMarker(
-                    gasStation.geo.lat,
-                    gasStation.geo.lon,
-                    gasStation.name,
-                    `${gasStation.company} ${gasStation.name}<br><span style="color: #1C2E35;">"Bensín" </span>${gasStation.bensin95}<br><span style="color: #1C2E35;">"Dísel" </span>${gasStation.diesel}`,
-                    getCompanyName(gasStation.company)
-                );
-            }  
+          if (gasStation.company === companyName) {
+            const marker = addMarker(
+              gasStation.geo.lat,
+              gasStation.geo.lon,
+              gasStation.name,
+              `${gasStation.company} ${gasStation.name}<br>Bensín: ${gasStation.bensin95}<br>Dísel: ${gasStation.diesel}`,
+              getCompanyName(gasStation.company)
+            );
+          }
         });
-    }
+      }
     
 
     function getCompanyName(name){
