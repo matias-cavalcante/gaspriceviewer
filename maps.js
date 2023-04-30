@@ -104,7 +104,7 @@ function init() {
         const imgSrc = "markers/" + firstPart.toLowerCase() + ".png";
         const icon = {
           url: imgSrc,
-          scaledSize: new google.maps.Size(90, 70), // Set the desired dimensions
+          scaledSize: new google.maps.Size(40, 36), // Set the desired dimensions
         };
         return icon;
       }
