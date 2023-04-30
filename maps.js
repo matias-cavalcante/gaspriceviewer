@@ -128,7 +128,7 @@ function init() {
             };
   
             const userMarker = addMarker(userPosition.lat, userPosition.lng, "Your Location", "You are here");
-            userMarker.setIcon("http://maps.google.com/mapfiles/ms/icons/green-dot.png");
+            userMarker.setIcon("markers/pin.png");
   
             mapInstance.setCenter(userPosition);
             mapInstance.setZoom(12);
