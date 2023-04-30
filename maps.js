@@ -81,7 +81,7 @@ function init() {
               gasStation.geo.lon,
               gasStation.name,
               `${gasStation.company} ${gasStation.name}<br>Bensin 95: ${gasStation.bensin95}<br>Diesel: ${gasStation.diesel}`,
-              getCompanyName(gasStation.name)
+              getCompanyName(gasStation.company)
             );
           }
         });
@@ -110,7 +110,7 @@ function init() {
           gasStation.geo.lon,
           gasStation.name,
           `${gasStation.company} ${gasStation.name}<br>Bensin 95: ${gasStation.bensin95}<br>Diesel: ${gasStation.diesel}`,
-          getCompanyName(gasStation.name)
+          getCompanyName(gasStation.company)
         );
       });
             
