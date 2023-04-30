@@ -131,7 +131,7 @@ function init() {
               lng: position.coords.longitude,
             };
   
-            const userMarker = addMarker(userPosition.lat, userPosition.lng, "Your Location", "You are here");
+            const userMarker = addMarker(userPosition.lat, userPosition.lng, "Your Location", "Þú ert hér");
 
             const icon = {
                 url: "markers/pin.png",
