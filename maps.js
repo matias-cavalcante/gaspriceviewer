@@ -1,15 +1,11 @@
 function init() {
-
-  
     let companies = ['Orkan', 'Olís', 'ÓB', 'Atlantsolía', 'N1' ]
     let start = 0;
     let markers = []; 
 
-
     const chooseCompany = document.getElementById("choose-company")
     const companiesCarousel = document.getElementById("companies-carousel")
    
-
     const currentCompany = document.getElementById("current-company")
     const arrowLeft = document.getElementById("prev-com");
     const arrowRight = document.getElementById("next-com");
@@ -18,8 +14,7 @@ function init() {
         const response = await fetch('https://apis.is/petrol');
         const data = await response.json();
         initMap(data);
-
-        
+     
         chooseCompany.addEventListener("click", function(){
             companiesCarousel.classList.toggle("hidden");
             companiesCarousel.classList.toggle("carousel-cont");
@@ -36,7 +31,6 @@ function init() {
                 initMap(data)
             }
         })
-
 
         arrowLeft.addEventListener("click", function(){
             let selectedCompany = "";
@@ -78,7 +72,6 @@ function init() {
         markers = [];
       }
 
-      
       function addMarkersByCompany(companyName, data) {
         // Loop through the gas stations data and add markers only for the matching company
         data.results.forEach(gasStation => {
@@ -88,26 +81,21 @@ function init() {
               gasStation.geo.lon,
               gasStation.name,
               `${gasStation.company} ${gasStation.name}<br>Bensin 95: ${gasStation.bensin95}<br>Diesel: ${gasStation.diesel}`,
-              "logos/fuel-station.png"
+              getCompanyName(gasStation.name)
             );
           }
         });
       }
+
+    function getCompanyName(name){
+        const parts = name.split(" "); // Split the string on the space
+        const firstPart = parts[0]; // Get the first element of the array
+        return "markers/" + firstPart + ".png"
+    }
       
-      
-    
-
-
-
-
-
     let mapInstance;
     let currentInfoWindow;
 
-
-
-
-  
     function initMap(data) {
       mapInstance = new google.maps.Map(document.getElementById("map"), {
         mapId: "d6c7877e45ecfbc3",
@@ -174,9 +162,6 @@ function init() {
           currentInfoWindow = infoWindow;
         });
 
-
-        //NEW CODE - NEW CODE - NEW CODE -
-        //NEW CODE - NEW CODE - NEW CODE -
         markers.push(marker);  //
         return marker;
       }
