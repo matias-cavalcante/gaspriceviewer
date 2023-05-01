@@ -16,6 +16,10 @@ body {
     margin: 0;
 }
 
+button {
+    color: black;
+}
+
 /*SPINNER TEST*/
 
 .spinner-container {
@@ -539,6 +543,7 @@ footer p {
 #map-section {
     width: 80%;
     position: relative;
+    margin-top: 3%;
     left: 10%;
     display: flex;
     justify-content: space-between;
