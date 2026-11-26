@@ -135,6 +135,11 @@ function displayPrices(tableElement, imgurl, link, newrows, area, gas, totalRequ
         return;
       }
 
+     // ADD THESE TWO LINES TO LOG TO THE CONSOLE AUTOMATICALLY:
+      console.log("--- REGION MATCH CHECK ---");
+      console.log("UI is asking for region:", area);
+      console.log("First station's region in JSON:", data[Object.keys(data)[0]]?.re
+
       console.log(`[DEBUG] Successfully received data for ${link}. Processing region: ${area}`);
       const filteredStations = Object.keys(data)
         .filter(station => data[station] && data[station].region === area);
