@@ -1,6 +1,8 @@
 import * as constants from './Components.js';
 import { fillRow } from './rowFiller.js';
 
+window.debugConstants = constants;
+
 //NAVBAR AND BURGER MENU STARTS HERE
  let burgerState = false;
 
