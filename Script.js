@@ -181,11 +181,19 @@ function updatePrices(url) {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      return response.json();
+      return response.text(); // Read as text first to inspect it
+    })
+    .then(text => {
+      try {
+        return JSON.parse(text); // Attempt to parse as JSON
+      } catch (e) {
+        console.error(`[DEBUG] URL (${url}) returned non-JSON text (likely an error page or HTML):`, text.substring(0, 150));
+        return {}; // Return safe empty object fallback
+      }
     })
     .catch(error => {
       console.error(`[DEBUG] Fetch failed for URL (${url}):`, error);
-      return {}; // Return a safe empty object fallback so the promise chain doesn't break
+      return {}; // Return a safe empty object fallback
     });
 }
 
