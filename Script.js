@@ -111,22 +111,35 @@ function incrementCompletedRequests(totalRequests) {
   }
 
   completedRequests++;
+  console.log(`[DEBUG] Completed requests: ${completedRequests} / ${totalRequests}`);
 
   if (completedRequests === totalRequests) {
     // Hide the spinner container and show the table container when all requests are completed
     spinnerContainer.style.display = 'none';
     tableHeader.style.display = "flex"
     tableContainer.style.display = 'block';
+    console.log("[DEBUG] All requests processed. Displaying table container.");
   }
 }
 
 function displayPrices(tableElement, imgurl, link, newrows, area, gas, totalRequests) {
+  console.log(`[DEBUG] Fetching data from link: ${link}`);
   updatePrices(link)
     .then(data => {
+      // Defensive check: ensure data is a valid object before parsing keys
+      if (!data || typeof data !== 'object') {
+        console.warn(`[DEBUG] Invalid or empty data received from ${link}. Skipping this source.`);
+        incrementCompletedRequests(totalRequests);
+        return;
+      }
+
+      console.log(`[DEBUG] Successfully received data for ${link}. Processing region: ${area}`);
       const filteredStations = Object.keys(data)
-        .filter(station => data[station].region === area);
+        .filter(station => data[station] && data[station].region === area);
+      
       const rows = Array.from(tableElement.querySelectorAll('tr'));
       const moreRows = newrows(filteredStations, imgurl, data, gas);
+      
       rows.sort((a, b) => parseFloat(a.lastElementChild.textContent) - parseFloat(b.lastElementChild.textContent));
       let mergedRows = [...rows, ...moreRows].sort((a, b) => parseFloat(a.lastElementChild.textContent) - parseFloat(b.lastElementChild.textContent));
 
@@ -134,47 +147,58 @@ function displayPrices(tableElement, imgurl, link, newrows, area, gas, totalRequ
         if (row instanceof Node) {
           tableElement.appendChild(row);
         } else {
-          console.error("Invalid element:", row);
+          console.error("[DEBUG] Invalid element:", row);
         }
       });
       constants.divTableContainer.appendChild(tableElement);
       incrementCompletedRequests(totalRequests);
     })
+    .catch(err => {
+      console.error(`[DEBUG] Error inside displayPrices chain for ${link}:`, err);
+      incrementCompletedRequests(totalRequests); // Always release the lock so the UI doesn't freeze
+    });
 }
 
 function stationsPerRegion(region, stations, oil){
   const spinnerContainer = document.querySelector('.spinner');
   const container = document.querySelector('#table-container');
   const tableHeader = document.querySelector('#table-header');
-  completedRequests = 0; // 
+  completedRequests = 0; 
   spinnerContainer.style.display = 'block';
   tableHeader.style.display = 'none';
   container.style.display = 'none'; 
 
+  console.log(`[DEBUG] Starting requests for ${stations.length} data sources in region: ${region}`);
   for (let st = 0; st < stations.length; st++){
-    setInterval(() => updatePrices(stations[st]['url']), stations[st]['time']);
-    setInterval(displayPrices(constants.table, stations[st]['img'], stations[st]['url'], newRows, region, oil, stations.length),
-    stations[st]['time'])
+    // Note: setInterval with fetch can hammer servers; keeping your structure but ensuring safe execution
+    displayPrices(constants.table, stations[st]['img'], stations[st]['url'], newRows, region, oil, stations.length);
   }
 }
 
 function updatePrices(url) {
   return fetch(url)
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
     .catch(error => {
-      console.error('Error fetching prices:', error);
+      console.error(`[DEBUG] Fetch failed for URL (${url}):`, error);
+      return {}; // Return a safe empty object fallback so the promise chain doesn't break
     });
 }
 
 
 function newRows(filtered, imglink, gasprice, type) {
   return filtered.reduce((acc, station) => {
+    if (!gasprice[station]) return acc;
     let stationUpperFirst = station[0].toUpperCase() + station.slice(1);
     const pricesRow = document.createElement('tr');
-    if (gasprice[station][type] != 0) {
+    if (gasprice[station][type] != 0 && gasprice[station][type] !== undefined) {
       fillRow(imglink, stationUpperFirst, gasprice[station][type], pricesRow);
       pricesRow.classList.add('table-row-style');
-      acc.push(pricesRow); // 
+      acc.push(pricesRow); 
     }
     return acc;
   }, []).sort((a, b) => parseFloat(a.lastElementChild.textContent) - parseFloat(b.lastElementChild.textContent));
@@ -187,5 +211,3 @@ function clearTable(tableElement) {
 
 stationsPerRegion(constants.currentRegion.textContent, constants.stationsBuild, "bensin");
 let fuel = "bensin";
-
-
